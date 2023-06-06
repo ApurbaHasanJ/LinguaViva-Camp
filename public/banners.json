@@ -1,23 +1,18 @@
 [
     {
-      "_id": 1,
-      "banner": "https://example.com/image1.jpg"
+        "_id": 5,
+        "img": "https://i.ibb.co/Ytg04rc/summer-camp.jpg"
     },
     {
-      "_id": 2,
-      "banner": "https://example.com/image2.jpg"
+        "_id": 4,
+        "img": "https://i.ibb.co/L10z3zv/group-students-throwing-books-air.jpg "
     },
     {
-      "_id": 3,
-      "banner": "https://example.com/image3.jpg"
+        "_id": 2,
+        "img": "https://i.ibb.co/YfV4WMN/multiethnic-group-young-concentrated-students.jpg"
     },
     {
-      "_id": 4,
-      "banner": "https://example.com/image4.jpg"
-    },
-    {
-      "_id": 5,
-      "banner": "https://example.com/image5.jpg"
+        "_id": 3,
+        "img": "https://i.ibb.co/Js5jJtP/students-with-backpack-reading-steps.jpg"
     }
-  ]
-  
+]

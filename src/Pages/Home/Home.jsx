@@ -1,9 +1,10 @@
+import Banners from "./Sections/Banners/Banners";
 
 
 const Home = () => {
     return (
         <div>
-            This is the home
+            <Banners/>
         </div>
     );
 };
