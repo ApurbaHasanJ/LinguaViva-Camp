@@ -1,13 +1,13 @@
 import Lottie from "lottie-react";
-import loginAni from "../../assets/login_iso.json";
+import  registerAni from "../../assets/11067-registration-animation.json";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-  const { register, handleSubmit } = useForm();
+const Register = () => {
+    const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -15,18 +15,41 @@ const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  return (
-    <>
+
+    return (
+        <>
       <Helmet>
-        <title>Login | LVC</title>
+        <title>Register | LVC</title>
       </Helmet>
-      <div className="hero min-h-screen mt-16">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+      <div className="hero min-h-screen py-16 mt-16">
+        <div className="hero-content flex-col items-start lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <Lottie animationData={loginAni} loop={false} />
+            <Lottie animationData={registerAni} loop={false} />
           </div>
           <div className="card pb-4  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form className="card-body pb-1" onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    {...register("name")}
+                    type="text"
+                    placeholder="Your name"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Photo</span>
+                  </label>
+                  <input
+                    {...register("photoUrl")}
+                    type="text"
+                    placeholder="Photo Url"
+                    className="input input-bordered"
+                  />
+                </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -46,7 +69,32 @@ const Login = () => {
                     <input
                       {...register("password")}
                       type={passwordVisible ? "text" : "password"}
-                      placeholder="Your password"
+                      placeholder="Type password"
+                      className="input input-bordered  w-full relative"
+                    />{" "}
+                    {passwordVisible ? (
+                      <AiFillEyeInvisible
+                        className="absolute top-1/2 right-4 transform -translate-y-1/2"
+                        onClick={togglePasswordVisibility}
+                      />
+                    ) : (
+                      <AiFillEye
+                        className="absolute top-1/2 right-4 transform -translate-y-1/2"
+                        onClick={togglePasswordVisibility}
+                      />
+                    )}
+                  </span>
+                 
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Confirm password</span>
+                  </label>
+                  <span className="relative">
+                    <input
+                      {...register("confirmPassword")}
+                      type={passwordVisible ? "text" : "password"}
+                      placeholder="Confirm password"
                       className="input input-bordered  w-full relative"
                     />{" "}
                     {passwordVisible ? (
@@ -75,9 +123,9 @@ const Login = () => {
               </form>
             <h6 className="text-center mt-0">
               Don&apos;t have an account?{" "}
-              <Link to="/register" state={location.state}>
+              <Link to="/login" state={location.state}>
                 <span className="text-rose-500  font-semibold hover:underline">
-                  Register Now
+                  Login here
                 </span>
               </Link>
             </h6>
@@ -100,7 +148,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  );
+    );
 };
 
-export default Login;
+export default Register;

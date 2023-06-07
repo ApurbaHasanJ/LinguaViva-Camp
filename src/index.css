@@ -10,7 +10,7 @@
   @apply inline-flex items-center capitalize lg:text-base text-xs lg:px-6 md:px-4 px-3 lg:py-3 py-2  mb-3 font-medium text-white transition hover:drop-shadow-2xl rounded border-none shadow-md md:mb-0  bg-rose-400  hover:bg-rose-500 duration-700;
 } */
 .btn-sec {
-  @apply inline-flex items-center justify-center lg:text-base capitalize text-xs  lg:px-6 tracking-wide md:px-4 px-3 lg:py-3 py-2  mb-3 font-medium transition rounded drop-shadow-2xl border border-rose-400 text-rose-400 hover:text-white hover:bg-rose-400 duration-700;
+  @apply inline-flex items-center justify-center lg:text-base capitalize text-xs  lg:px-6 tracking-wide md:px-4 px-3 lg:py-2 py-1  mb-3 font-medium transition rounded-md drop-shadow-2xl border border-sky-300 text-sky-300 hover:text-white hover:bg-sky-300 duration-700;
 }
 
 .badge {
