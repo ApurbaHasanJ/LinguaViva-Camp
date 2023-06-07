@@ -23,7 +23,7 @@ const Register = () => {
       </Helmet>
       <div className="hero min-h-screen py-16 mt-16">
         <div className="hero-content flex-col items-start lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left sticky top-1 right-1">
             <Lottie animationData={registerAni} loop={false} />
           </div>
           <div className="card pb-4  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
