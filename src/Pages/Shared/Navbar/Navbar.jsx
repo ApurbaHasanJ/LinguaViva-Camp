@@ -1,10 +1,33 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { FaUserCircle } from 'react-icons/fa';
+import Swal from "sweetalert2";
 
 const Navbar = ({ bgClassName, textClassName }) => {
+  const {user, logOut} = useContext(AuthContext)
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
 
+// Handle Logout
+const handleLogout = () => {
+  logOut()
+    .then(() => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Log Out Successfully!!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+
+  
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
@@ -73,10 +96,50 @@ const Navbar = ({ bgClassName, textClassName }) => {
       <div className="navbar-center">
         <h2 className={`font-extrabold ${textClassName}`}>LVC</h2>
       </div>
-      <div className="navbar-end ">
-        <Link to='/login'>
+      <div className="navbar-end mr-4">
+      {user ? (
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0}>
+            <div className="w-8 rounded-full">
+              {user?.photoURL ? (
+                <img
+                  src={user?.photoURL}
+                  alt={user?.displayName}
+                  title={user?.displayName}
+                  className="w-full rounded-full h-full"
+                />
+              ) : (
+                <FaUserCircle className="text-2xl" />
+              )}
+            </div>
+          </label>
+          <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+            <li>
+              <Link to="/profile" className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
+            <li>
+              <button 
+              onClick={handleLogout}
+              >Logout</button>
+            </li>
+          </ul>
+        </div>
+      ) : (
+        <Link to="/login" className="inline-flex items-center">
+          <button className="lg:px-6  px-2 py-1  lg:text-base text-xs hover:shadow-2xl bg-sky-400 hover:bg-sky-500 text-white rounded-full">Login</button>
+          </Link>
+      )}
+        {/* {
+          user? <FaUserCircle className="text-2xl"/> : <Link to='/login'>
           <button className="lg:px-6  px-2 py-1  lg:text-base text-xs hover:shadow-2xl bg-sky-400 hover:bg-sky-500 text-white rounded-full">Login</button>
         </Link>
+        } */}
       </div>
     </div>
   );
