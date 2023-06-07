@@ -2,9 +2,16 @@ import { Link } from "react-router-dom";
 import logo from '../../../assets/logo.png'
 import linkedin from '../../../assets/linkedin.png'
 import { TiMessages } from 'react-icons/ti'
-
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
     return (
         <footer className="bg-sky-50 pt-8">
             <div className="flex justify-center items-center flex-col">
@@ -71,8 +78,9 @@ const Footer = () => {
    
  
 </div>
-<div className="border-t mx-10 flex justify-between items-center">
-  <button className="flex items-center gap-2 text-white bg-sky-400 hover:bg-sky-500 hover:shadow-2xl rounded-full px-5 py-1 h-1/3">
+<div   className="border-t mx-10 flex justify-between items-center">
+  <button data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom" className="flex items-center gap-2 text-white bg-sky-400 hover:bg-sky-500 hover:shadow-2xl rounded-full px-5 py-1 h-1/3">
     <TiMessages/>
     <p>Appointment</p>
   </button>

@@ -2,7 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { FaUserCircle } from 'react-icons/fa';
+import { HiMenuAlt2 } from 'react-icons/hi';
 import Swal from "sweetalert2";
+
+
 
 const Navbar = ({ bgClassName, textClassName }) => {
   const {user, logOut} = useContext(AuthContext)
@@ -56,20 +59,7 @@ const handleLogout = () => {
             className={`btn btn-ghost btn-circle ${textClassName} flex gap-3`}
 
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
+           <HiMenuAlt2 className="text-2xl"/>
           </label>
           <ul
             tabIndex={0}
@@ -94,7 +84,7 @@ const handleLogout = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <h2 className={`font-extrabold ${textClassName}`}>LVC</h2>
+        <h2 className={`font-extrabold text-2xl ${textClassName}`}>LVC</h2>
       </div>
       <div className="navbar-end mr-4">
       {user ? (

@@ -68,9 +68,11 @@ const Login = () => {
       <Helmet>
         <title>Login | LVC</title>
       </Helmet>
+      
       <div className="hero min-h-screen mt-16">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
+          <div className="text-center ">
+          <h2 className=" text-3xl font-semibold">Please Login</h2>
             <Lottie animationData={loginAni} loop={false} />
           </div>
           <div className="card pb-4  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

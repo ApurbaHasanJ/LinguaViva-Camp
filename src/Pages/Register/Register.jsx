@@ -9,7 +9,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
   const { createUser, userProfile, continueWithGoogle } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate()
@@ -32,6 +32,7 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500
           })
+          reset()
         navigate(path, { replace: true });
         console.log(loggedUser);
       });
@@ -74,9 +75,10 @@ const Register = () => {
       <Helmet>
         <title>Register | LVC</title>
       </Helmet>
-      <div className="hero min-h-screen py-16 mt-16">
+      <div className="hero min-h-screen mt-16 mb-10 pt-10 ">
         <div className="hero-content flex-col items-start lg:flex-row-reverse">
-          <div className="text-center lg:text-left sticky top-1 right-1">
+          <div className="text-center sticky top-1 right-1">
+          <h2 className=" text-3xl font-semibold">Please Register</h2>
             <Lottie animationData={registerAni} loop={false} />
           </div>
           <div className="card pb-4  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
