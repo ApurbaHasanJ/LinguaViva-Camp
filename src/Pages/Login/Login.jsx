@@ -17,6 +17,8 @@ const Login = () => {
   } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
+
+  
   // get redirect path
   const from = location.state?.from?.pathname || "/";
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -24,8 +26,8 @@ const Login = () => {
   // Handle Login
   const onSubmit = (data) => {
     signIn(data.email, data.password).then((res) => {
-      const loginUser = res.user;
-      console.log(loginUser);
+      const loggedUser = res.user;
+      console.log(loggedUser);
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -34,6 +36,7 @@ const Login = () => {
         timer: 1500,
       });
       reset()
+      navigate(from, { replace: true });
     });
     console.log(data);
   };
@@ -43,15 +46,33 @@ const Login = () => {
     continueWithGoogle()
       .then((result) => {
         const loggedUser = result.user;
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Sign in Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-
         console.log(loggedUser);
+
+        const saveUser = {name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL
+        }
+      fetch("http://localhost:5000/users", {
+        method: 'POST',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(saveUser)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+           
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Sign In Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate(from, { replace: true });
+            
+            console.log(loggedUser);
+          }
+        });
         navigate(from, { replace: true });
       })
       .catch((err) => {

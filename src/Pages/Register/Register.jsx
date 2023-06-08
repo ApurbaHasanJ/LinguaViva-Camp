@@ -9,33 +9,54 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
-  const { createUser, userProfile, continueWithGoogle } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    reset,
+  } = useForm();
+  const { createUser, userProfile, continueWithGoogle } =
+    useContext(AuthContext);
   const location = useLocation();
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   // get redirect path
   const path = location?.state?.from?.pathname || "/";
 
   // Handle Register
   const onSubmit = (data) => {
     console.log(data);
-    
-    createUser(data.email, data.password)
-      .then((res) => {
-        userProfile(data.name, data.photoUrl);
-        const loggedUser = res.user;
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Sign Up Successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          reset()
-        navigate(path, { replace: true });
-        console.log(loggedUser);
-      });
+
+    createUser(data.email, data.password).then((res) => {
+      userProfile(data.name, data.photoUrl);
+      const loggedUser = res.user;
+
+      const saveUser = {name: data.name, email: data.email, img: data.photoUrl}
+      fetch("http://localhost:5000/users", {
+        method: 'POST',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(saveUser)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Sign Up Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            
+            navigate(path, { replace: true });
+            console.log(loggedUser);
+          }
+        });
+    });
   };
 
   // Continue with Google
@@ -44,13 +65,13 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Sign in Successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        
+          position: "top-end",
+          icon: "success",
+          title: "Sign in Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
         console.log(loggedUser);
         navigate(path, { replace: true });
       })
@@ -78,7 +99,7 @@ const Register = () => {
       <div className="hero min-h-screen mt-16 mb-10 pt-10 ">
         <div className="hero-content flex-col items-start lg:flex-row-reverse">
           <div className="text-center sticky top-1 right-1">
-          <h2 className=" text-3xl font-semibold">Please Register</h2>
+            <h2 className=" text-3xl font-semibold">Please Register</h2>
             <Lottie animationData={registerAni} loop={false} />
           </div>
           <div className="card pb-4  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -94,7 +115,9 @@ const Register = () => {
                   className="input input-bordered"
                 />
                 {errors.name && (
-                  <span className="text-red-600 text-xs">{errors.name.message}</span>
+                  <span className="text-red-600 text-xs">
+                    {errors.name.message}
+                  </span>
                 )}
               </div>
               <div className="form-control">
@@ -132,7 +155,9 @@ const Register = () => {
                   className="input input-bordered"
                 />
                 {errors.email && (
-                  <span className="text-red-600 text-xs ">{errors.email.message}</span>
+                  <span className="text-red-600 text-xs ">
+                    {errors.email.message}
+                  </span>
                 )}
               </div>
 
@@ -145,7 +170,8 @@ const Register = () => {
                     {...register("password", {
                       required: "Password is required",
                       pattern: {
-                        value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/,
+                        value:
+                          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/,
                         message:
                           "Password must contain at least one uppercase letter, one lowercase letter, one special character, and one number. It should be at least 6 characters long.",
                       },
@@ -186,7 +212,8 @@ const Register = () => {
                           "Confirm password must be at least 6 characters long",
                       },
                       pattern: {
-                        value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/,
+                        value:
+                          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/,
                         message:
                           "Password must contain at least one uppercase letter, one lowercase letter, one special character, and one number. It should be at least 6 characters long.",
                       },
@@ -240,7 +267,10 @@ const Register = () => {
               <div className="border-b h-1 w-full border-gray-300"></div>
             </div>
             <div className="form-control mt-4 mx-8">
-              <button onClick={googleSignIn} className=" w-full flex gap-3 btn-sec">
+              <button
+                onClick={googleSignIn}
+                className=" w-full flex gap-3 btn-sec"
+              >
                 <img
                   className="w-5 h-5"
                   src="https://i.postimg.cc/4NhHcV5v/google.png"

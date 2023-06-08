@@ -55,7 +55,7 @@ const Banners = () => {
         ref={swiperRef}
         spaceBetween={30}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
@@ -70,8 +70,7 @@ const Banners = () => {
               <div className="absolute inset-0 bg-black opacity-30 duration-700"></div>
               {/* banner description */}
               <div data-aos="fade-right"
-     data-aos-offset="300"
-     data-aos-easing="ease-in-sine"
+     
                 className="absolute lg:left-14 lg:top-1/3 lg:max-w-3xl w-full pr-16 left-8 bottom-12  transform lg:-translate-y-1/2"
               >
                 <h2 className="lg:text-[52px] lg:mb-6 mb-1 text-3xl font-bold text-white ">

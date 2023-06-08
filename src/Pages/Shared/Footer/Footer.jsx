@@ -14,8 +14,8 @@ const Footer = () => {
 
     return (
         <footer className="bg-sky-50 pt-8">
-            <div className="flex justify-center items-center flex-col">
-                <div className="flex gap-4 items-center">
+            <div className="flex justify-center mx-5 items-center flex-col">
+                <div className="md:flex gap-4 items-center">
                 <img className="rounded-full w-20" src={logo} alt="" />
                 <div>
                 <h2 className="footer-title text-2xl text-black opacity-100 capitalize">LinguaViva Camp</h2>
@@ -33,7 +33,9 @@ const Footer = () => {
     <Link to="#" className="link link-hover text-xs">All ages</Link>
     <div className="flex flex-col gap-2 mt-4">
     <span className="footer-title text-black opacity-100 capitalize">Follow Us</span> 
-   <div className="flex gap-3">
+   <div 
+   
+      className=" flex  gap-3">
     <img className="h-9 w-9 bg-sky-100 p-2 rounded-lg" src="https://i.postimg.cc/d0Yz1tks/facebook.png" alt="" />
     <img className="h-9 w-9 bg-sky-100 p-2 rounded-lg" src="https://i.postimg.cc/rF7BB9qt/instagram.png" alt="" />
     
@@ -78,14 +80,14 @@ const Footer = () => {
    
  
 </div>
-<div   className="border-t mx-10 flex justify-between items-center">
+<div   className="border-t mx-10 sm:flex justify-between  items-center">
   <button data-aos="fade-up"
-     data-aos-anchor-placement="top-bottom" className="flex items-center gap-2 text-white bg-sky-400 hover:bg-sky-500 hover:shadow-2xl rounded-full px-5 py-1 h-1/3">
+     data-aos-anchor-placement="top-bottom" className="flex items-center  gap-2 md:mt-0 mt-6 lg:mx-0 mx-auto text-white bg-sky-400 hover:bg-sky-500 hover:shadow-2xl rounded-full px-5 py-1 h-1/3">
     <TiMessages/>
     <p>Appointment</p>
   </button>
-<div className=" flex flex-col justify-end items-end">
-<div className="flex gap-5 mt-4">
+<div className=" flex flex-col  ">
+<div className="md:flex grid gap-4 mt-4">
 <Link to="#" className="link link-hover text-xs">Privacy policy</Link>
 <Link to="#" className="link link-hover text-xs">Terms and Conditions</Link>
 <Link to="#" className="link link-hover text-xs">Cookies</Link>

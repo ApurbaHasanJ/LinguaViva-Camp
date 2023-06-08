@@ -4,6 +4,7 @@ import Main from "../Layouts/Main";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,14 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: '/dashboard',
+    element: <Dashboard/>,
+    errorElement: <ErrorPage/>,
+    children: [
+      
+    ]
+  }
 ]);
 
 export default router;
