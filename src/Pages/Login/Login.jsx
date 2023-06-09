@@ -23,22 +23,29 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  // Handle Login
   const onSubmit = (data) => {
-    signIn(data.email, data.password).then((res) => {
-      const loggedUser = res.user;
-      console.log(loggedUser);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Sign in Successfully",
-        showConfirmButton: false,
-        timer: 1500,
+    signIn(data.email, data.password)
+      .then((res) => {
+        const loggedUser = res.user;
+        console.log(loggedUser);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign in Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        reset();
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Wrong email or password",
+          text: "Please enter the correct email and password.",
+        });
       });
-      reset()
-      navigate(from, { replace: true });
-    });
-    console.log(data);
   };
 
   // Continue with Google
@@ -73,7 +80,6 @@ const Login = () => {
             console.log(loggedUser);
           }
         });
-        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err.message);

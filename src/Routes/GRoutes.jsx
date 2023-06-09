@@ -5,35 +5,38 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Home />,
       },
       {
-        path: '/login',
-        element: <Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path: '/register',
-        element: <Register/>
-      }
+        path: "/register",
+        element: <Register />,
+      },
     ],
   },
   {
-    path: '/dashboard',
-    element: <Dashboard/>,
-    errorElement: <ErrorPage/>,
-    children: [
-      
-    ]
-  }
+    path: "/dashboard",
+    element: (
+      <PrivateRoutes>
+        <Dashboard />
+      </PrivateRoutes>
+    ),
+    errorElement: <ErrorPage />,
+    children: [],
+  },
 ]);
 
 export default router;
