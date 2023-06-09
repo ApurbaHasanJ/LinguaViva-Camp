@@ -21,8 +21,8 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // get redirect path
-  const path = location?.state?.from?.pathname || "/";
+   // get redirect path
+   const path = location?.state?.from?.pathname || "/";
 
   // Handle Register
   const onSubmit = (data) => {
@@ -64,16 +64,33 @@ const Register = () => {
     continueWithGoogle()
       .then((result) => {
         const loggedUser = result.user;
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Sign in Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-
         console.log(loggedUser);
-        navigate(path, { replace: true });
+
+        const saveUser = {name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL
+        }
+      fetch("http://localhost:5000/users", {
+        method: 'POST',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(saveUser)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+           
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Sign In Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate(path, { replace: true });
+            
+            console.log(loggedUser);
+          }
+        });
       })
       .catch((err) => {
         console.log(err.message);
@@ -255,7 +272,7 @@ const Register = () => {
             </form>
             <h6 className="text-center mt-0">
               Already have an account?{" "}
-              <Link to="/login" state={location.state}>
+              <Link to="/login">
                 <span className="text-rose-500  font-semibold hover:underline">
                   Login here
                 </span>

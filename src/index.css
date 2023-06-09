@@ -18,9 +18,9 @@
 }
 
 .active {
-  @apply font-medium tracking-wide text-rose-400  transition-colors duration-300;
+  @apply font-medium tracking-wide bg-sky-300 text-white transition-colors duration-300;
 }
 
 .default {
-  @apply font-medium tracking-wide text-slate-700 hover:text-rose-300 transition-colors duration-300;
+  @apply font-medium tracking-wide text-slate-700 hover:text-sky-500 transition-colors duration-300;
 }

@@ -13,7 +13,7 @@ const Footer = () => {
   }, []);
 
     return (
-        <footer className="bg-sky-50 pt-8">
+        <footer className="bg-sky-50 pt-8 w-full">
             <div className="flex justify-center mx-5 items-center flex-col">
                 <div className="md:flex gap-4 items-center">
                 <img className="rounded-full w-20" src={logo} alt="" />
@@ -79,25 +79,25 @@ const Footer = () => {
   </div> 
    
  
-</div>
-<div   className="border-t mx-10 sm:flex justify-between  items-center">
-  <button data-aos="fade-up"
-     data-aos-anchor-placement="top-bottom" className="flex items-center  gap-2 md:mt-0 mt-6 lg:mx-0 mx-auto text-white bg-sky-400 hover:bg-sky-500 hover:shadow-2xl rounded-full px-5 py-1 h-1/3">
-    <TiMessages/>
-    <p>Appointment</p>
-  </button>
-<div className=" flex flex-col  ">
-<div className="md:flex grid gap-4 mt-4">
-<Link to="#" className="link link-hover text-xs">Privacy policy</Link>
-<Link to="#" className="link link-hover text-xs">Terms and Conditions</Link>
-<Link to="#" className="link link-hover text-xs">Cookies</Link>
-  
-</div>
-<Link to="#" className="link link-hover text-xs my-4">© Signum International AG 2023. All rights reserved.</Link>
+  </div>
+    <div   className="border-t mx-10 sm:flex justify-between  items-center">
+      <button data-aos="fade-up"
+          data-aos-anchor-placement="top-bottom" className="flex items-center  gap-2 md:mt-0 mt-6 lg:mx-0  sm:mr-auto text-white bg-sky-400 hover:bg-sky-500 hover:shadow-2xl rounded-full px-5 py-1 h-1/3">
+          <TiMessages/>
+          <p>Appointment</p>
+        </button>
+      <div className=" flex flex-col  ">
+      <div className="md:flex grid gap-4 mt-4">
+      <Link to="#" className="link link-hover text-xs">Privacy policy</Link>
+      <Link to="#" className="link link-hover text-xs">Terms and Conditions</Link>
+      <Link to="#" className="link link-hover text-xs">Cookies</Link>
 
-</div>
-</div>
-        </footer>
+      </div>
+      <Link to="#" className="link link-hover text-xs my-4">© Signum International AG 2023. All rights reserved.</Link>
+
+      </div>
+    </div>
+</footer>
     );
 };
 

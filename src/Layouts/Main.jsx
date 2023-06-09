@@ -13,7 +13,7 @@ const Main = () => {
       ) : (
         <Navbar bgClassName="bg-sky-50" textClassName="text-black" />
       )}
-      <div className="min-h-[calc(100vh-120px)]">
+      <div className="min-h-[100vh]">
         <Outlet />
       </div>
       <Footer />

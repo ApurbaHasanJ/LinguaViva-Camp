@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMenuAlt2 } from "react-icons/hi";
@@ -61,19 +61,19 @@ const Navbar = ({ bgClassName, textClassName }) => {
             className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link>Instructors</Link>
+              <NavLink to="/instructors">Instructors</NavLink>
             </li>
             <li>
-              <Link>Classes</Link>
+              <NavLink to='/all-classes'>Classes</NavLink>
             </li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
             <li>
-              <Link>About</Link>
+              <NavLink to="#">About</NavLink>
             </li>
           </ul>
         </div>
@@ -87,7 +87,7 @@ const Navbar = ({ bgClassName, textClassName }) => {
             <label tabIndex={0}>
               <div className="w-8 rounded-full">
                 {user?.photoURL ? (
-                  <div className="h-8 w-8 rounded-full overflow-hidden border-sky-500  p-[1px] border-2">
+                  <div className="h-8 w-8 rounded-full overflow-hidden border-sky-400  p-[1px] border-2">
                     <img
                       src={user?.photoURL}
                       alt={user?.displayName}
@@ -102,13 +102,13 @@ const Navbar = ({ bgClassName, textClassName }) => {
             </label>
             <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li>
-                <Link to="/profile" className="justify-between">
+                <NavLink to="/profile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/settings">Settings</Link>
+                <NavLink to="/settings">Settings</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout}>Logout</button>
