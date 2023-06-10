@@ -111,7 +111,7 @@ const Login = () => {
                       message: "Invalid email address",
                     },
                   })}
-                  type="text"
+                  type="email"
                   placeholder="Your email"
                   className="input input-bordered"
                 />

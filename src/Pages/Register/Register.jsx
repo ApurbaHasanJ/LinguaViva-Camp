@@ -21,8 +21,8 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-   // get redirect path
-   const path = location?.state?.from?.pathname || "/";
+  // get redirect path
+  const path = location?.state?.from?.pathname || "/";
 
   // Handle Register
   const onSubmit = (data) => {
@@ -32,13 +32,17 @@ const Register = () => {
       userProfile(data.name, data.photoUrl);
       const loggedUser = res.user;
 
-      const saveUser = {name: data.name, email: data.email, img: data.photoUrl}
+      const saveUser = {
+        name: data.name,
+        email: data.email,
+        img: data.photoUrl,
+      };
       fetch("http://localhost:5000/users", {
-        method: 'POST',
-        headers:{
-          'content-type': 'application/json'
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
         },
-        body: JSON.stringify(saveUser)
+        body: JSON.stringify(saveUser),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -51,7 +55,7 @@ const Register = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            
+
             navigate(path, { replace: true });
             console.log(loggedUser);
           }
@@ -66,27 +70,30 @@ const Register = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
 
-        const saveUser = {name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL
-        }
-      fetch("http://localhost:5000/users", {
-        method: 'POST',
-        headers:{
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(saveUser)
-  })
-      .then(res => res.json())
-      .then(() => {
-          navigate(path, { replace: true });
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Sign in Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          })
+        const saveUser = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          img: loggedUser.photoURL,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            navigate(path, { replace: true });
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Sign in Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
       })
-})
       .catch((err) => {
         console.log(err.message);
       });
@@ -162,7 +169,7 @@ const Register = () => {
                       message: "Invalid email address",
                     },
                   })}
-                  type="text"
+                  type="email"
                   placeholder="Your email"
                   className="input input-bordered"
                 />
