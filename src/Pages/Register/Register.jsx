@@ -74,24 +74,19 @@ const Register = () => {
           'content-type': 'application/json'
         },
         body: JSON.stringify(saveUser)
+  })
+      .then(res => res.json())
+      .then(() => {
+          navigate(path, { replace: true });
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Sign in Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          })
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
-           
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Sign In Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate(path, { replace: true });
-            
-            console.log(loggedUser);
-          }
-        });
-      })
+})
       .catch((err) => {
         console.log(err.message);
       });
