@@ -15,8 +15,8 @@ import Footer from "../../Pages/Shared/Footer/Footer";
 const Dashboard = () => {
   const navigate = useNavigate();
   // TODO: Load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = false;
-  const isInstructor = true;
+  const isAdmin = true;
+  const isInstructor = false;
   // const isStudent = true;
 
   // const location = useLocation();

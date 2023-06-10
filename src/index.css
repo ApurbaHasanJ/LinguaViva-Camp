@@ -14,7 +14,7 @@
 }
 
 .badge {
-  @apply  p-2  text-xs font-semibold  text-white uppercase rounded-full bg-red-600;
+  @apply  p-2  text-xs font-semibold  text-white capitalize rounded-full bg-sky-500;
 }
 
 .active {

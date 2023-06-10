@@ -60,8 +60,13 @@ const ManageUsers = () => {
       <Helmet>
         <title>Manage Users | LVC</title>
       </Helmet>
-      <div className="overflow-x-auto mt-3 mb-16 pb-3">
-        <table className="table">
+      <div className="flex justify-center">
+        <h2 className="text-center my-5 font-semibold text-2xl bg-sky-200 p-3 px-6 rounded-tr-full rounded-bl-full inline-block ">
+          Manage Users
+        </h2>
+      </div>
+      <div className="overflow-x-auto border-y border-gray-100  mt-3 mb-16 pb-3">
+        <table className="table ">
           {/* head */}
           <thead>
             <tr>
@@ -71,9 +76,9 @@ const ManageUsers = () => {
               <th>Role</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {users.map((user, index) => (
-              <tr key={user._id} className=" ">
+              <tr key={user._id} className="border-b border-gray-100 ">
                 <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center space-x-3">

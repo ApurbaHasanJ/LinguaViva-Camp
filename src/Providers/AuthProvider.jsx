@@ -4,6 +4,8 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStat
 import { app } from "../Firebase/firebase.config";
 
 
+// <button className="btn btn-outline  btn-xs border hover:border-none border-sky-400 hover:bg-sky-400 text-sky-400 hover:text-white">Feedback</button>
+
 
 const auth = getAuth(app)
 export const AuthContext = createContext(null)
@@ -43,29 +45,33 @@ const AuthProvider = ({children}) => {
         return signOut(auth)
     }
     
-    useEffect(()=>{
-      const unsubscribe =   onAuthStateChanged(auth, currentUser =>{
-            setUser(currentUser)
-            console.log("current user", currentUser);
-
-            // get user token
-           if(currentUser){
-            axios.post('http://localhost:5000/jwt',{email: currentUser.email})
-            .then(data =>{
-                console.log(data.data.userToken)
-                localStorage.setItem('access-token', data.data.userToken)
-            })
-           }
-           else{
-            localStorage.removeItem('access-token')
-           }
-
-            setLoading(false)
-        })
-        return()=>{
-            return unsubscribe()
-        }
-    },[])
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+          setUser(currentUser);
+          console.log("current user", currentUser);
+      
+          // Get user token
+          if (currentUser) {
+            axios
+              .post("http://localhost:5000/jwt", { email: currentUser.email })
+              .then((response) => {
+                console.log(response.data.userToken);
+                localStorage.setItem("access-token", response.data.userToken);
+              })
+              .catch((error) => {
+                console.error("Error fetching user token:", error);
+              });
+          } else {
+            localStorage.removeItem("access-token");
+          }
+      
+          setLoading(false);
+        });
+        return () => {
+          return unsubscribe();
+        };
+      }, []);
+      
     
     const authInfo = {
         user,

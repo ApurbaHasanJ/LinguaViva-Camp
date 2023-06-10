@@ -3,12 +3,15 @@ import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
+
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -26,6 +29,14 @@ const AddClass = () => {
         config
       );
       console.log(response.data);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Class Added Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      reset(); // Reset the form after successful submission
     } catch (error) {
       console.error("Error adding class:", error);
     }
