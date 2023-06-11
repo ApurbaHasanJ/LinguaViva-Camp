@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import Spinner from "../../Spinner/Spinner";
 
 const ManageClasses = () => {
   const [selectedClassId, setSelectedClassId] = useState(null);
   const [feedback, setFeedback] = useState("");
 
-  const { data: classes = [], refetch } = useQuery(["classes"], async () => {
+  const { data: classes = [], refetch, isLoading } = useQuery(["classes"], async () => {
     const res = await fetch("http://localhost:5000/classes");
     return res.json();
   });
@@ -65,6 +66,10 @@ const ManageClasses = () => {
       },
     }
   );
+
+  if(isLoading){
+    return <Spinner/>
+  }
 
   return (
     <>

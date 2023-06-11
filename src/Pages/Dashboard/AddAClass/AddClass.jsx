@@ -36,7 +36,7 @@ const AddClass = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      reset(); // Reset the form after successful submission
+      reset(); 
     } catch (error) {
       console.error("Error adding class:", error);
     }

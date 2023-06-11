@@ -4,18 +4,22 @@ import { Helmet } from "react-helmet";
 import { FaUserShield, FaUsers } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
+import Spinner from "../../Spinner/Spinner";
 
 const ManageUsers = () => {
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
+  const { data: users = [], refetch, isLoading } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
 
-  // Add state to track the selected role
   const [selectedUserId, setSelectedUserId] = useState(null);
   const cardRef = useRef(null);
+  const [disabledButtons, setDisabledButtons] = useState([]);
+  const [updatedUsers, setUpdatedUsers] = useState([]);
 
   const handleUsersRole = (userId, role) => {
+    setDisabledButtons((prevDisabledButtons) => [...prevDisabledButtons, userId]);
+  
     fetch(`http://localhost:5000/users/${userId}`, {
       method: "PATCH",
       headers: {
@@ -27,8 +31,18 @@ const ManageUsers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
+          const updated = users.map((user) => {
+            if (user._id === userId) {
+              return {
+                ...user,
+                role: role,
+                btn: false, // Disable the button after role update
+              };
+            }
+            return user;
+          });
+          setUpdatedUsers(updated);
           refetch();
           Swal.fire({
             position: "top-end",
@@ -40,6 +54,7 @@ const ManageUsers = () => {
         }
       });
   };
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -55,19 +70,22 @@ const ManageUsers = () => {
     };
   }, []);
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <Helmet>
         <title>Manage Users | LVC</title>
       </Helmet>
       <div className="flex justify-center">
-        <h2 className="text-center my-5 font-semibold text-2xl bg-sky-200 p-3 px-6 rounded-tr-full rounded-bl-full inline-block ">
+        <h2 className="text-center my-5 font-semibold text-2xl bg-sky-200 p-3 px-6 rounded-tr-full rounded-bl-full inline-block">
           Manage Users
         </h2>
       </div>
       <div className="overflow-x-auto border-y border-gray-100  mt-3 mb-16 pb-3">
-        <table className="table ">
-          {/* head */}
+        <table className="table">
           <thead>
             <tr>
               <th>#</th>
@@ -76,36 +94,31 @@ const ManageUsers = () => {
               <th>Role</th>
             </tr>
           </thead>
-          <tbody >
-            {users.map((user, index) => (
-              <tr key={user._id} className="border-b border-gray-100 ">
+          <tbody>
+            {(updatedUsers.length > 0 ? updatedUsers : users).map((user, index) => (
+              <tr key={user._id} className="border-b border-gray-100">
                 <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={user.img}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={user.img} alt="Avatar Tailwind CSS Component" />
                       </div>
                     </div>
                     <div>
                       <div className="font-bold">{user.name}</div>
-                      <div className="text-sm opacity-50">
-                        {user?.role ? user.role : "Student"}
-                      </div>
+                      <div className="text-sm opacity-50">{user?.role ? user.role : "Student"}</div>
                     </div>
                   </div>
                 </td>
                 <td>{user.email}</td>
                 <td>
                   <div
+                    disabled={disabledButtons.includes(user._id) || user.btn === false}
                     onClick={() => setSelectedUserId(user._id)}
-                    className="btn btn-ghost  hover:bg-sky-100"
+                    className="btn btn-ghost hover:bg-sky-100"
                   >
-                    {/* Add onClick event handler to open role selection dialog */}
-                    <button>
+                    <button className="focus:outline-none">
                       {user.role === "Admin" ? (
                         <FaUserShield className="text-2xl" />
                       ) : (
@@ -119,13 +132,8 @@ const ManageUsers = () => {
                       )}
                     </button>
                   </div>
-
-                  {/* Add role selection card */}
                   {selectedUserId === user._id && (
-                    <div
-                      ref={cardRef}
-                      className="absolute z-10 left-2/3 bg-white dropdown-content p-4 rounded shadow"
-                    >
+                    <div ref={cardRef} className="absolute z-10 left-2/3 bg-white dropdown-content p-4 rounded shadow">
                       <button
                         className="mb-2 flex items-center hover:text-sky-300 text-left focus:outline-none"
                         onClick={() => handleUsersRole(user._id, "Admin")}
