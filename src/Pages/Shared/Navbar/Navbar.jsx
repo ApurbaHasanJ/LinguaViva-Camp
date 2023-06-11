@@ -1,11 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
-import { FaUserCircle } from "react-icons/fa";
+import { FaChalkboardTeacher, FaDashcube, FaUserCircle } from "react-icons/fa";
 import { HiMenuAlt2 } from "react-icons/hi";
 import Swal from "sweetalert2";
+import { AiFillHome } from "react-icons/ai";
+import { SiGoogleclassroom } from "react-icons/si";
+import { BsFillInfoSquareFill } from "react-icons/bs";
+import { MdClass } from "react-icons/md";
+import useBooked from "../../../Hooks/useBooked";
 
 const Navbar = ({ bgClassName, textClassName }) => {
+  const [bookedClasses] = useBooked()
+  console.log(bookedClasses);
   const { user, logOut } = useContext(AuthContext);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
@@ -61,19 +68,58 @@ const Navbar = ({ bgClassName, textClassName }) => {
             className="menu gap-1 menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/">Home</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/"
+              >
+                {" "}
+                <AiFillHome /> <p>Home</p>
+              </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/instructors">Instructors</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/instructors"
+              >
+                <FaChalkboardTeacher />
+                <p>Instructors</p>
+              </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to='/all-classes'>Classes</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/all-classes"
+              >
+                <SiGoogleclassroom /> <p>Classes</p>
+              </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard">Dashboard</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/dashboard"
+              >
+                <FaDashcube />
+                <p>Dashboard</p>
+              </NavLink>
+            </li>
+            <li className="flex">
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/dashboard/selected-classes"
+              >
+                <MdClass />
+                <p>Booked Classes</p>
+                <div className="badge badge-info w-8">{bookedClasses?.length || 0}</div>
+              </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/about">About</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/about"
+              >
+                <BsFillInfoSquareFill />
+                <p>About</p>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -102,16 +148,33 @@ const Navbar = ({ bgClassName, textClassName }) => {
             </label>
             <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li>
-                <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/profile" >
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                  to="/profile"
+                >
                   Profile
                   <span className="badge">New</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/settings">Settings</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                  to="/settings"
+                >
+                  Settings
+                </NavLink>
               </li>
               <li>
-                <button className="hover:text-sky-500 font-medium" onClick={handleLogout}>Logout</button>
+                <button
+                  className="hover:text-sky-500 font-medium"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>

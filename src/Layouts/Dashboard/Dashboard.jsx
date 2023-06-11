@@ -1,6 +1,7 @@
 import { HiChevronDoubleRight } from "react-icons/hi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { GiTeacher } from "react-icons/gi";
+import { MdClass, MdPayment, MdPayments } from "react-icons/md";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 import { FaChalkboardTeacher, FaUserCircle, FaUsers } from "react-icons/fa";
 
@@ -11,12 +12,14 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { AiFillHome } from "react-icons/ai";
 import Footer from "../../Pages/Shared/Footer/Footer";
+import useBooked from "../../Hooks/useBooked";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [bookedClasses] = useBooked()
   // TODO: Load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = true;
-  const isInstructor = false;
+  const isAdmin = false;
+  const isInstructor = true;
   // const isStudent = true;
 
   // const location = useLocation();
@@ -123,18 +126,33 @@ const Dashboard = () => {
             {isAdmin ? (
               <>
                 <li>
-                  <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/admin-home">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "active" : "default"
+                    }
+                    to="/admin-home"
+                  >
                     <AiFillHome /> <p>Admin Home</p>
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/classes">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "active" : "default"
+                    }
+                    to="/dashboard/classes"
+                  >
                     <SiGoogleclassroom />
                     <p>Manage Classes</p>
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/users">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "active" : "default"
+                    }
+                    to="/dashboard/users"
+                  >
                     <FaUsers />
                     <p>Manage Users</p>
                   </NavLink>
@@ -145,18 +163,33 @@ const Dashboard = () => {
                 {isInstructor ? (
                   <>
                     <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="instructor-home">
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="instructor-home"
+                      >
                         <AiFillHome /> <p>Instructor Home</p>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/my-classes">
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="/dashboard/my-classes"
+                      >
                         <FaUsers />
                         <p>My Classes</p>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/add-class">
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="/dashboard/add-class"
+                      >
                         <SiGoogleclassroom />
                         <p>Add A Class</p>
                       </NavLink>
@@ -166,32 +199,60 @@ const Dashboard = () => {
                   <>
                     {" "}
                     <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/student-home">
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="/student-home"
+                      >
                         <AiFillHome /> <p>Student Home</p>
                       </NavLink>
                     </li>
-                    <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/selected-classes">
-                        <FaUsers />
-                        <p>Selected Classes</p>
+                    <li className="flex">
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="/dashboard/selected-classes"
+                      >
+                        <MdClass />
+                        <p>Booked Classes</p>
+                        <div className="badge badge-info w-8">
+                          {bookedClasses?.length || 0}
+                        </div>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/enrolled-classes">
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="/dashboard/enrolled-classes"
+                      >
                         <SiGoogleclassroom />
                         <p>Enrolled Classes</p>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/payment">
-                        <SiGoogleclassroom />
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="/dashboard/payment"
+                      >
+                        <MdPayment />
                         <p>Payment</p>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/dashboard/payment-history">
-                        <SiGoogleclassroom />
-                        <p>Payment History</p>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "active" : "default"
+                        }
+                        to="/dashboard/payment-history"
+                      >
+                        <MdPayments />
+                        <p>Payments History</p>
                       </NavLink>
                     </li>
                   </>
@@ -202,25 +263,37 @@ const Dashboard = () => {
 
             <div className="divider"></div>
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/">
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/"
+              >
                 <AiFillHome /> <p>Home</p>
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/instructors">
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/instructors"
+              >
                 <FaChalkboardTeacher /> <p>Instructors</p>
               </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/all-classes">
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/all-classes"
+              >
                 <GiTeacher />
                 <p>Classes</p>
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={({isActive})=> (isActive? "active" : "default")} to="/about">
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "default")}
+                to="/about"
+              >
                 <BsFillInfoSquareFill />
                 <p>About</p>
               </NavLink>
