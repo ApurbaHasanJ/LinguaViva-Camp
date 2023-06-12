@@ -10,8 +10,9 @@ const AllClasses = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [allClasses] = useAllClasses();
+  const [allClasses, refetch] = useAllClasses();
   console.log(allClasses);
+
   // const { data: classes = [] } = useQuery(["classes/approved"], async () => {
   //   const res = await fetch("http://localhost:5000/classes/approved");
   //   console.log(classes);
@@ -44,6 +45,7 @@ const AllClasses = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -68,6 +70,7 @@ const AllClasses = () => {
         }
       });
     }
+    refetch();
   };
 
   return (
@@ -93,7 +96,11 @@ const AllClasses = () => {
                 alt="Cls Photo"
               />
             </div>
-            <div className={`card-body rounded-b-lg ${cls.availableSeats === 0 && 'bg-red-500' } flex flex-col justify-between`}>
+            <div
+              className={`card-body rounded-b-lg ${
+                cls.availableSeats === 0 && "bg-red-500"
+              } flex flex-col justify-between`}
+            >
               <div>
                 <h2 className="card-title">{cls.clsTitle}</h2>
               </div>
@@ -110,9 +117,10 @@ const AllClasses = () => {
                   </h2>
                 </div>
                 {cls.availableSeats === 0 ? (
-                  <button 
-                  disabled='disabled'
-                  className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white">
+                  <button
+                    disabled="disabled"
+                    className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white"
+                  >
                     Add
                   </button>
                 ) : (
@@ -123,7 +131,6 @@ const AllClasses = () => {
                     Add
                   </button>
                 )}
-                
               </div>
             </div>
           </div>

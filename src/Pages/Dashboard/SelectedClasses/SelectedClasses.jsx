@@ -1,9 +1,35 @@
 import { Helmet } from "react-helmet";
 import useBooked from "../../../Hooks/useBooked";
+import Swal from "sweetalert2";
 
 const SelectedClasses = () => {
-  const [bookedClasses] = useBooked();
+  const [bookedClasses, refetch] = useBooked();
 
+
+  const handleDeleteBookedCls = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:5000/bookedClasses/${id}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        // Deletion successful
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Class Bookmarked Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch(); // Refresh data or update UI
+      } else {
+        // Handle the case when deletion fails
+        console.log("Failed to delete the booked class.");
+      }
+    } catch (error) {
+      console.log("An error occurred while deleting the booked class.");
+    }
+  };
 
 
 console.log(bookedClasses);
@@ -42,7 +68,7 @@ console.log(bookedClasses);
                   <br />
                   <div className="font-medium ">{cls?.title}</div>
                 </td>
-                <td>{cls?.seats} seats <br /> available</td>
+                <td className="text-xs opacity-70">{cls?.seats} seats <br /> available</td>
                 <td className="capitalize font-medium text-xs">
                   ${cls?.price}
                 </td>
@@ -52,7 +78,7 @@ console.log(bookedClasses);
                     <button
                       className="btn btn-xs bg-white border border-red-400 text-red-400 hover:text-white hover:bg-red-400"
                       onClick={() => {
-                        // setSelectedClass(cls);
+                        handleDeleteBookedCls(cls?._id)
                       }}
                     >
                       delete

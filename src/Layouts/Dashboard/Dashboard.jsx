@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [bookedClasses] = useBooked()
   // TODO: Load data from the server to have dynamic isAdmin based on Data
   const isAdmin = false;
-  const isInstructor = true;
+  const isInstructor = false;
   // const isStudent = true;
 
   // const location = useLocation();
