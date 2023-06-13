@@ -72,7 +72,6 @@ const SelectedClasses = () => {
                 </td>
 
                 <td>
-                  
                   <div className="grid gap-2">
                     <button
                       className="btn btn-xs bg-white border border-red-400 text-red-400 hover:text-white hover:bg-red-400"
@@ -82,11 +81,13 @@ const SelectedClasses = () => {
                     >
                       delete
                     </button>
-                    <Link to="/dashboard/payment">
-                      <button
-                        className="btn btn-xs bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400"
-                        
-                      >
+                    <Link
+                      to={{
+                        pathname: "/dashboard/payment",
+                        state: { price: cls.price }, 
+                      }}
+                    >
+                      <button className="btn btn-xs bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400">
                         Pay
                       </button>
                     </Link>

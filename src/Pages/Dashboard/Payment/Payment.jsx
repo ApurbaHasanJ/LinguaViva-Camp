@@ -3,10 +3,14 @@ import { Helmet } from "react-helmet";
 import CheckOutForm from "./CheckOutForm";
 import { Elements } from "@stripe/react-stripe-js";
 
-const Payment = () => {
-  // TODO: Provide Publishable key
-  const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK)
+import { useLocation } from "react-router-dom";
 
+// TODO: Provide Publishable key
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK)
+const Payment = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const price = queryParams.get("price");
 
   return (
     <>
@@ -21,7 +25,7 @@ const Payment = () => {
 
       <Elements stripe={stripePromise}>
 
-      <CheckOutForm/>
+      <CheckOutForm price={price}/>
       </Elements>
     </>
   );
