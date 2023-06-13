@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState, useEffect } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckOutForm = ({ price }) => {
   const stripe = useStripe();
@@ -16,7 +17,7 @@ const CheckOutForm = ({ price }) => {
     .then(res => {
       setClientSecret(res.data.clientSecret)
     })
-  }, [price, axiosSecure]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,6 +56,11 @@ const CheckOutForm = ({ price }) => {
   })
   if(confirmError){
     console.log(confirmError);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: confirmError,
+    });
   }
   console.log(paymentIntent);
   };

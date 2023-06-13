@@ -17,6 +17,7 @@ import EnrolledClasses from "../Pages/Dashboard/EnrolledClasses/EnrolledClasses"
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,12 +29,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:'/all-classes',
-        element:<AllClasses/>
+        path: "/all-classes",
+        element: <AllClasses />,
       },
       {
-        path:'/instructors',
-        element: <Instructors/>
+        path: "/instructors",
+        element: <Instructors />,
       },
       {
         path: "/login",
@@ -56,38 +57,40 @@ const router = createBrowserRouter([
     children: [
       // admin routes
       {
-        path: '/dashboard/users',
-        element: <ManageUsers/>
+        path: "/dashboard/users",
+        element: (
+          <ManageUsers />
+        ),
       },
       {
-        path: '/dashboard/classes',
-        element: <ManageClasses/>
+        path: "/dashboard/classes",
+        element: <ManageClasses />,
       },
       // Instructor routes
       {
-        path: '/dashboard/my-classes',
-        element: <MyClasses/>
+        path: "/dashboard/my-classes",
+        element: <MyClasses />,
       },
       {
-        path: '/dashboard/add-class',
-        element: <AddClass/>
+        path: "/dashboard/add-class",
+        element: <AddClass />,
       },
       // student Classes
       {
-        path: '/dashboard/selected-classes',
-        element: <SelectedClasses/>
+        path: "/dashboard/selected-classes",
+        element: <SelectedClasses />,
       },
       {
-        path: '/dashboard/enrolled-classes',
-        element: <EnrolledClasses/>
+        path: "/dashboard/enrolled-classes",
+        element: <EnrolledClasses />,
       },
       {
-        path: '/dashboard/payment',
-        element: <Payment/>
+        path: "/dashboard/payment",
+        element: <Payment />,
       },
       {
-        path: '/dashboard/payment-history',
-        element: <PaymentHistory/>
+        path: "/dashboard/payment-history",
+        element: <PaymentHistory />,
       },
     ],
   },

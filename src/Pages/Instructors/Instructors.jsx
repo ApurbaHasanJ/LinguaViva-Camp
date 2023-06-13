@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 const Instructors = () => {
   const { data: instructors = [] } = useQuery(["instructors"], async () => {
-    const res = await fetch("https://lingua-viva-camp-server.vercel.app/instructors");
+    const res = await fetch("http://localhost:5000/instructors");
     return res.json();
   });
 

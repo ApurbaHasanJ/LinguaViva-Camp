@@ -13,18 +13,18 @@ import Swal from "sweetalert2";
 import { AiFillHome } from "react-icons/ai";
 import Footer from "../../Pages/Shared/Footer/Footer";
 import useBooked from "../../Hooks/useBooked";
+import useAdmin from "../../Hooks/useAdmin";
+import useInstructor from "../../Hooks/useInstructor";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [bookedClasses] = useBooked()
   // TODO: Load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = false;
-  const isInstructor = false;
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
   // const isStudent = true;
+  
 
-  // const location = useLocation();
-  // get redirect path
-  // const from = location.state?.from?.pathname || "/";
 
   const { user, logOut } = useContext(AuthContext);
 

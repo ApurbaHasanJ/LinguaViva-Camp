@@ -14,7 +14,7 @@ const AllClasses = () => {
   console.log(allClasses);
 
   // const { data: classes = [] } = useQuery(["classes/approved"], async () => {
-  //   const res = await fetch("https://lingua-viva-camp-server.vercel.app/classes/approved");
+  //   const res = await fetch("http://localhost:5000/classes/approved");
   //   console.log(classes);
   //   return res.json();
   // });
@@ -35,7 +35,7 @@ const AllClasses = () => {
     };
 
     if (user && user.email) {
-      fetch("https://lingua-viva-camp-server.vercel.app/bookedClasses", {
+      fetch("http://localhost:5000/bookedClasses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const AllClasses = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            
+            refetch();
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -70,7 +70,7 @@ const AllClasses = () => {
         }
       });
     }
-    refetch();
+    
   };
 
   return (

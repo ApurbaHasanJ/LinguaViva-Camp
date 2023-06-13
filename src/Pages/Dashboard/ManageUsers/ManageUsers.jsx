@@ -8,7 +8,7 @@ import Spinner from "../../Spinner/Spinner";
 
 const ManageUsers = () => {
   const { data: users = [], refetch, isLoading } = useQuery(["users"], async () => {
-    const res = await fetch("https://lingua-viva-camp-server.vercel.app/users");
+    const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
 
@@ -20,7 +20,7 @@ const ManageUsers = () => {
   const handleUsersRole = (userId, role) => {
     setDisabledButtons((prevDisabledButtons) => [...prevDisabledButtons, userId]);
   
-    fetch(`https://lingua-viva-camp-server.vercel.app/users/${userId}`, {
+    fetch(`http://localhost:5000/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
