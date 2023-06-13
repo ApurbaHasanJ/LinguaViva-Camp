@@ -72,6 +72,7 @@ const SelectedClasses = () => {
                 </td>
 
                 <td>
+                  
                   <div className="grid gap-2">
                     <button
                       className="btn btn-xs bg-white border border-red-400 text-red-400 hover:text-white hover:bg-red-400"
