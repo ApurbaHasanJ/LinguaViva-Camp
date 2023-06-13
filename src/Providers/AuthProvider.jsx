@@ -53,7 +53,7 @@ const AuthProvider = ({children}) => {
           // Get user token
           if (currentUser) {
             axios
-              .post("http://localhost:5000/jwt", { email: currentUser.email })
+              .post("https://lingua-viva-camp-server.vercel.app/jwt", { email: currentUser.email })
               .then((response) => {
                 console.log(response.data.userToken);
                 localStorage.setItem("access-token", response.data.userToken);

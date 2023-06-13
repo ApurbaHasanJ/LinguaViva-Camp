@@ -12,7 +12,7 @@ const useBooked = () => {
       queryKey: ["bookedClasses", user?.email],
       queryFn: async () => {
         const res = await fetch(
-          `http://localhost:5000/bookedClasses?email=${user?.email}`
+          `https://lingua-viva-camp-server.vercel.app/bookedClasses?email=${user?.email}`
         );
         
         return res.json(); 

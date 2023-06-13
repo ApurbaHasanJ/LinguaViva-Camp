@@ -9,7 +9,7 @@ const ManageClasses = () => {
   const [feedback, setFeedback] = useState("");
 
   const { data: classes = [], refetch, isLoading } = useQuery(["classes"], async () => {
-    const res = await fetch("http://localhost:5000/classes");
+    const res = await fetch("https://lingua-viva-camp-server.vercel.app/classes");
     return res.json();
   });
 
@@ -42,7 +42,7 @@ const ManageClasses = () => {
 
   const updateClassStatus = useMutation(
     async ({ classId, status, feedback }) => {
-      const res = await fetch(`http://localhost:5000/classes/${classId}/status`, {
+      const res = await fetch(`https://lingua-viva-camp-server.vercel.app/classes/${classId}/status`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

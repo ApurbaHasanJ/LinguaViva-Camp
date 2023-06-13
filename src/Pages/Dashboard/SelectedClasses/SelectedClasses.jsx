@@ -3,12 +3,15 @@ import useBooked from "../../../Hooks/useBooked";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
+// https://vercel.com/apurbahasanj/lingua-viva-camp-server
+
+
 const SelectedClasses = () => {
   const [bookedClasses, refetch] = useBooked();
 
   const handleDeleteBookedCls = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/bookedClasses/${id}`, {
+      const res = await fetch(`https://lingua-viva-camp-server.vercel.app/bookedClasses/${id}`, {
         method: "DELETE",
       });
 

@@ -18,7 +18,7 @@ const MyClasses = () => {
       // Set the authorization header
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      const response = await axios.get("http://localhost:5000/classes");
+      const response = await axios.get("https://lingua-viva-camp-server.vercel.app/classes");
       setClasses(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -57,7 +57,7 @@ const MyClasses = () => {
 
       // Make the API request to update the class
       await axios.patch(
-        `http://localhost:5000/classes/${selectedClass._id}`,
+        `https://lingua-viva-camp-server.vercel.app/classes/${selectedClass._id}`,
         formData
       );
 

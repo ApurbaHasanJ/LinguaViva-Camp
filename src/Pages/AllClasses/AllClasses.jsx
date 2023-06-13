@@ -14,7 +14,7 @@ const AllClasses = () => {
   console.log(allClasses);
 
   // const { data: classes = [] } = useQuery(["classes/approved"], async () => {
-  //   const res = await fetch("http://localhost:5000/classes/approved");
+  //   const res = await fetch("https://lingua-viva-camp-server.vercel.app/classes/approved");
   //   console.log(classes);
   //   return res.json();
   // });
@@ -35,7 +35,7 @@ const AllClasses = () => {
     };
 
     if (user && user.email) {
-      fetch("http://localhost:5000/bookedClasses", {
+      fetch("https://lingua-viva-camp-server.vercel.app/bookedClasses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
