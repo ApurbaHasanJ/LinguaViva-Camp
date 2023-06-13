@@ -93,7 +93,7 @@ const Footer = () => {
       <Link to="#" className="link link-hover text-xs">Cookies</Link>
 
       </div>
-      <Link to="#" className="link link-hover text-xs my-4">© Signum International AG 2023. All rights reserved.</Link>
+      <Link to="#" className="link link-hover text-xs my-4">© LinguaViva Camp AG 2023. All rights reserved.</Link>
 
       </div>
     </div>

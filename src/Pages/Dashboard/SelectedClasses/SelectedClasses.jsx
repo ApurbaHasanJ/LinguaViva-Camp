@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet";
 import useBooked from "../../../Hooks/useBooked";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const SelectedClasses = () => {
   const [bookedClasses, refetch] = useBooked();
-
 
   const handleDeleteBookedCls = async (id) => {
     try {
@@ -21,9 +21,8 @@ const SelectedClasses = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        refetch(); // Refresh data or update UI
+        refetch();
       } else {
-        // Handle the case when deletion fails
         console.log("Failed to delete the booked class.");
       }
     } catch (error) {
@@ -31,8 +30,7 @@ const SelectedClasses = () => {
     }
   };
 
-
-console.log(bookedClasses);
+  console.log(bookedClasses);
   return (
     <>
       <Helmet>
@@ -60,15 +58,15 @@ console.log(bookedClasses);
                 <td>{index + 1}</td>
                 <td>
                   <div className="avatar w-28">
-                    <img src={cls?.image
-
-} alt="Thumbnail" />
+                    <img src={cls?.image} alt="Thumbnail" />
                   </div>
 
                   <br />
                   <div className="font-medium ">{cls?.title}</div>
                 </td>
-                <td className="text-xs opacity-70">{cls?.seats} seats <br /> available</td>
+                <td className="text-xs opacity-70">
+                  {cls?.seats} seats <br /> available
+                </td>
                 <td className="capitalize font-medium text-xs">
                   ${cls?.price}
                 </td>
@@ -78,19 +76,19 @@ console.log(bookedClasses);
                     <button
                       className="btn btn-xs bg-white border border-red-400 text-red-400 hover:text-white hover:bg-red-400"
                       onClick={() => {
-                        handleDeleteBookedCls(cls?._id)
+                        handleDeleteBookedCls(cls?._id);
                       }}
                     >
                       delete
                     </button>
-                    <button
-                      className="btn btn-xs bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400"
-                      onClick={() => {
-                        // setSelectedClass(cls);
-                      }}
-                    >
-                      Pay
-                    </button>
+                    <Link to="/dashboard/payment">
+                      <button
+                        className="btn btn-xs bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400"
+                        
+                      >
+                        Pay
+                      </button>
+                    </Link>
                   </div>
                 </td>
               </tr>

@@ -83,7 +83,7 @@ const AllClasses = () => {
           All Classes
         </h2>
       </div>
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-5 my-container">
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 mb-10 gap-5 my-container">
         {allClasses.map((cls) => (
           <div
             key={cls._id}
