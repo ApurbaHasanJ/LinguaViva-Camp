@@ -1,11 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
+import Spinner from "../Spinner/Spinner";
 
 const Instructors = () => {
-  const { data: instructors = [] } = useQuery(["instructors"], async () => {
-    const res = await fetch("http://localhost:5000/instructors");
-    return res.json();
-  });
+  const { data: instructors = [], isLoading } = useQuery(
+    ["instructors"], // Query key
+    async () => {
+      const res = await fetch("http://localhost:5000/instructors");
+      return res.json();
+    },
+    { enabled: true }
+  );
+
+  if(isLoading){
+    return <Spinner/>
+  }
 
   return (
     <>
