@@ -11,7 +11,7 @@ import { MdClass } from "react-icons/md";
 import useBooked from "../../../Hooks/useBooked";
 
 const Navbar = ({ bgClassName, textClassName }) => {
-  const [bookedClasses] = useBooked()
+  const [bookedClasses] = useBooked();
   console.log(bookedClasses);
   const { user, logOut } = useContext(AuthContext);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -53,25 +53,21 @@ const Navbar = ({ bgClassName, textClassName }) => {
     <div
       className={`navbar h-8 border-b fixed top-0 left-0 z-50 transition-opacity duration-300 ${
         isNavbarVisible ? "opacity-100" : "opacity-0"
-      } ${bgClassName} `}
-    >
+      } ${bgClassName} `}>
       <div className="navbar-start">
         <div className="dropdown">
           <label
             tabIndex={0}
-            className={`btn btn-ghost btn-circle ${textClassName} flex gap-3`}
-          >
+            className={`btn btn-ghost btn-circle ${textClassName} flex gap-3`}>
             <HiMenuAlt2 className="text-2xl" />
           </label>
           <ul
             tabIndex={0}
-            className="menu gap-1 menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
+            className="menu gap-1 menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/"
-              >
+                to="/">
                 {" "}
                 <AiFillHome /> <p>Home</p>
               </NavLink>
@@ -79,8 +75,7 @@ const Navbar = ({ bgClassName, textClassName }) => {
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/instructors"
-              >
+                to="/instructors">
                 <FaChalkboardTeacher />
                 <p>Instructors</p>
               </NavLink>
@@ -88,16 +83,14 @@ const Navbar = ({ bgClassName, textClassName }) => {
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/all-classes"
-              >
+                to="/all-classes">
                 <SiGoogleclassroom /> <p>Classes</p>
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/dashboard"
-              >
+                to="/dashboard">
                 <FaDashcube />
                 <p>Dashboard</p>
               </NavLink>
@@ -105,18 +98,18 @@ const Navbar = ({ bgClassName, textClassName }) => {
             <li className="flex">
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/dashboard/selected-classes"
-              >
+                to="/dashboard/selected-classes">
                 <MdClass />
                 <p>Booked Classes</p>
-                <div className="badge badge-info w-8">{bookedClasses?.length || 0}</div>
+                <div className="badge badge-info w-8">
+                  {bookedClasses?.length || 0}
+                </div>
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/about"
-              >
+                to="/about">
                 <BsFillInfoSquareFill />
                 <p>About</p>
               </NavLink>
@@ -152,8 +145,7 @@ const Navbar = ({ bgClassName, textClassName }) => {
                   className={({ isActive }) =>
                     isActive ? "active" : "default"
                   }
-                  to="/profile"
-                >
+                  to="/profile">
                   Profile
                   <span className="badge">New</span>
                 </NavLink>
@@ -163,16 +155,14 @@ const Navbar = ({ bgClassName, textClassName }) => {
                   className={({ isActive }) =>
                     isActive ? "active" : "default"
                   }
-                  to="/settings"
-                >
+                  to="/settings">
                   Settings
                 </NavLink>
               </li>
               <li>
                 <button
                   className="hover:text-sky-500 font-medium"
-                  onClick={handleLogout}
-                >
+                  onClick={handleLogout}>
                   Logout
                 </button>
               </li>

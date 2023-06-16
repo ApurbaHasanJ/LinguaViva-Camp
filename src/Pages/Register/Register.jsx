@@ -37,7 +37,7 @@ const Register = () => {
         email: data.email,
         img: data.photoUrl,
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -75,7 +75,7 @@ const Register = () => {
           email: loggedUser.email,
           img: loggedUser.photoURL,
         };
-        fetch("http://localhost:5000/users", {
+        fetch("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

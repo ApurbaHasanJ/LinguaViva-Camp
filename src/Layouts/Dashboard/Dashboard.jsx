@@ -1,7 +1,7 @@
 import { HiChevronDoubleRight } from "react-icons/hi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { GiTeacher } from "react-icons/gi";
-import { MdClass, MdPayment, MdPayments } from "react-icons/md";
+import { MdClass, MdPayments } from "react-icons/md";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 import { FaChalkboardTeacher, FaUserCircle, FaUsers } from "react-icons/fa";
 
@@ -18,13 +18,11 @@ import useInstructor from "../../Hooks/useInstructor";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [bookedClasses] = useBooked()
-  // TODO: Load data from the server to have dynamic isAdmin based on Data
-  const [isAdmin] = useAdmin()
-  const [isInstructor] = useInstructor()
-  // const isStudent = true;
+  const [bookedClasses] = useBooked();
   
-
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+  // const isStudent = true;
 
   const { user, logOut } = useContext(AuthContext);
 
@@ -110,8 +108,7 @@ const Dashboard = () => {
         <div className="drawer-content flex flex-col items-center justify-center">
           <label
             htmlFor="my-drawer-2"
-            className=" mr-auto bg-sky-50 py-2 px-7 drawer-button lg:hidden"
-          >
+            className=" mr-auto bg-sky-50 py-2 px-7 drawer-button lg:hidden">
             <HiChevronDoubleRight className="text-2xl " />
           </label>
           {/* Page content here */}
@@ -130,8 +127,7 @@ const Dashboard = () => {
                     className={({ isActive }) =>
                       isActive ? "active" : "default"
                     }
-                    to="/admin-home"
-                  >
+                    to="/admin-home">
                     <AiFillHome /> <p>Admin Home</p>
                   </NavLink>
                 </li>
@@ -140,8 +136,7 @@ const Dashboard = () => {
                     className={({ isActive }) =>
                       isActive ? "active" : "default"
                     }
-                    to="/dashboard/classes"
-                  >
+                    to="/dashboard/classes">
                     <SiGoogleclassroom />
                     <p>Manage Classes</p>
                   </NavLink>
@@ -151,8 +146,7 @@ const Dashboard = () => {
                     className={({ isActive }) =>
                       isActive ? "active" : "default"
                     }
-                    to="/dashboard/users"
-                  >
+                    to="/dashboard/users">
                     <FaUsers />
                     <p>Manage Users</p>
                   </NavLink>
@@ -167,8 +161,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
-                        to="instructor-home"
-                      >
+                        to="instructor-home">
                         <AiFillHome /> <p>Instructor Home</p>
                       </NavLink>
                     </li>
@@ -177,8 +170,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
-                        to="/dashboard/my-classes"
-                      >
+                        to="/dashboard/my-classes">
                         <FaUsers />
                         <p>My Classes</p>
                       </NavLink>
@@ -188,8 +180,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
-                        to="/dashboard/add-class"
-                      >
+                        to="/dashboard/add-class">
                         <SiGoogleclassroom />
                         <p>Add A Class</p>
                       </NavLink>
@@ -203,8 +194,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
-                        to="/student-home"
-                      >
+                        to="/student-home">
                         <AiFillHome /> <p>Student Home</p>
                       </NavLink>
                     </li>
@@ -213,8 +203,7 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
-                        to="/dashboard/selected-classes"
-                      >
+                        to="/dashboard/selected-classes">
                         <MdClass />
                         <p>Booked Classes</p>
                         <div className="badge badge-info w-8">
@@ -227,13 +216,12 @@ const Dashboard = () => {
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
-                        to="/dashboard/enrolled-classes"
-                      >
+                        to="/dashboard/enrolled-classes">
                         <SiGoogleclassroom />
                         <p>Enrolled Classes</p>
                       </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                       <NavLink
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
@@ -243,14 +231,13 @@ const Dashboard = () => {
                         <MdPayment />
                         <p>Payment</p>
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
-                        to="/dashboard/payment-history"
-                      >
+                        to="/dashboard/payment-history">
                         <MdPayments />
                         <p>Payments History</p>
                       </NavLink>
@@ -265,8 +252,7 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/"
-              >
+                to="/">
                 <AiFillHome /> <p>Home</p>
               </NavLink>
             </li>
@@ -274,16 +260,14 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/instructors"
-              >
+                to="/instructors">
                 <FaChalkboardTeacher /> <p>Instructors</p>
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/all-classes"
-              >
+                to="/all-classes">
                 <GiTeacher />
                 <p>Classes</p>
               </NavLink>
@@ -292,8 +276,7 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
-                to="/about"
-              >
+                to="/about">
                 <BsFillInfoSquareFill />
                 <p>About</p>
               </NavLink>

@@ -24,7 +24,7 @@ const AddClass = () => {
         },
       };
       const response = await axios.post(
-        "http://localhost:5000/classes",
+        "https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/classes",
         data,
         config
       );
@@ -44,7 +44,7 @@ const AddClass = () => {
 
   const getAuthToken = async (user) => {
     try {
-      const response = await axios.post("http://localhost:5000/jwt", user);
+      const response = await axios.post("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/jwt", user);
       const { userToken } = response.data;
       return userToken;
     } catch (error) {

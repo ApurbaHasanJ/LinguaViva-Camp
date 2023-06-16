@@ -6,14 +6,14 @@ const Instructors = () => {
   const { data: instructors = [], isLoading } = useQuery(
     ["instructors"], // Query key
     async () => {
-      const res = await fetch("http://localhost:5000/instructors");
+      const res = await fetch("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/instructors");
       return res.json();
     },
     { enabled: true }
   );
 
-  if(isLoading){
-    return <Spinner/>
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
@@ -26,12 +26,11 @@ const Instructors = () => {
           Instructors
         </h2>
       </div>
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-5 my-container">
+      <div className="grid md:grid-cols-3 mb-10 sm:grid-cols-2 gap-5 my-container">
         {instructors.map((instructor) => (
           <div
             key={instructor._id}
-            className="card border-t rounded-lg bg-base-100 shadow-xl flex flex-col"
-          >
+            className="card border-t rounded-lg bg-base-100 shadow-xl flex flex-col">
             <div className="overflow-hidden rounded-t-lg">
               <img
                 className="object-cover md:h-48 w-full"
@@ -42,6 +41,9 @@ const Instructors = () => {
             <div className="card-body rounded-b-lg">
               <h2 className="card-title">{instructor.name}</h2>
               <p className="text-sm opacity-50">{instructor.email}</p>
+              <button className="btn btn-sm ml-auto btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white">
+                See All Classes
+              </button>
             </div>
           </div>
         ))}

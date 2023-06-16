@@ -5,11 +5,13 @@ import { FaUserShield, FaUsers } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
 import Spinner from "../../Spinner/Spinner";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const ManageUsers = () => {
+  const [axiosSecure] = useAxiosSecure()
   const { data: users = [], refetch, isLoading } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+    const res = await axiosSecure.get("users");
+    return res.data;
   });
 
   const [selectedUserId, setSelectedUserId] = useState(null);
@@ -20,7 +22,7 @@ const ManageUsers = () => {
   const handleUsersRole = (userId, role) => {
     setDisabledButtons((prevDisabledButtons) => [...prevDisabledButtons, userId]);
   
-    fetch(`http://localhost:5000/users/${userId}`, {
+    fetch(`https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

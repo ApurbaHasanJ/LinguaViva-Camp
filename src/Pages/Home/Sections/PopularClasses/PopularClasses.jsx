@@ -4,23 +4,32 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAdmin from "../../../../Hooks/useAdmin";
+import useInstructor from "../../../../Hooks/useInstructor";
 
 const PopularClasses = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   const {
     refetch,
     data: popularClasses = [],
     isLoading,
-  } = useQuery({
-    queryKey: ["classesApproved"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/popular-classes");
-      return res.json();
+  } = useQuery(
+    {
+      queryKey: ["classesApproved"],
+      queryFn: async () => {
+        const res = await fetch(
+          "https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/popular-classes"
+        );
+        return res.json();
+      },
     },
-  },{ enabled: true });
+    { enabled: true }
+  );
 
   if (isLoading) {
     return <Spinner />;
@@ -39,13 +48,16 @@ const PopularClasses = () => {
     };
 
     if (user && user.email) {
-      fetch("http://localhost:5000/bookedClasses", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookedCls),
-      })
+      fetch(
+        "https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/bookedClasses",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookedCls),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
@@ -115,11 +127,13 @@ const PopularClasses = () => {
                   </h2>
                 </div>
                 {cls.availableSeats === 0 ? (
-                  <button
-                    disabled="disabled"
-                    className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white">
-                    Add
-                  </button>
+                  isAdmin || isInstructor ? (
+                    <button
+                      disabled="disabled"
+                      className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white">
+                      Add
+                    </button>
+                  ) : null
                 ) : (
                   <button
                     onClick={() => handleBookedClasses(cls)}

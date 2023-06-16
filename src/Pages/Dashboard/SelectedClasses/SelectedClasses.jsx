@@ -3,16 +3,17 @@ import useBooked from "../../../Hooks/useBooked";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-
-
 const SelectedClasses = () => {
   const [bookedClasses, refetch] = useBooked();
 
   const handleDeleteBookedCls = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/bookedClasses/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/bookedClasses/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (res.ok) {
         // Deletion successful
@@ -79,16 +80,14 @@ const SelectedClasses = () => {
                       className="btn btn-xs bg-white border border-red-400 text-red-400 hover:text-white hover:bg-red-400"
                       onClick={() => {
                         handleDeleteBookedCls(cls?._id);
-                      }}
-                    >
+                      }}>
                       delete
                     </button>
                     <Link
                       to={{
-                        pathname: "/dashboard/payment",
-                        state: { price: cls.price }, 
-                      }}
-                    >
+                        pathname: `/dashboard/payment/${cls?._id}`,
+                        state: { price: cls.price },
+                      }}>
                       <button className="btn btn-xs w-full bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400">
                         Pay
                       </button>

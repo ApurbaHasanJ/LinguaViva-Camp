@@ -4,23 +4,26 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAllClasses from "../../Hooks/useAllClasses";
+import Spinner from "../Spinner/Spinner";
 // import Spinner from "../Spinner/Spinner";
 
 const AllClasses = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [allClasses, refetch] = useAllClasses();
+  const [allClasses, refetch,isLoading] = useAllClasses();
   console.log(allClasses);
 
   // const { data: classes = [] } = useQuery(["classes/approved"], async () => {
-  //   const res = await fetch("http://localhost:5000/classes/approved");
+  //   const res = await fetch("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/classes/approved");
   //   console.log(classes);
   //   return res.json();
   // });
-  // if (isLoading) {
-  //   return <Spinner />;
-  // }
+
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const handleBookedClasses = (cls) => {
     console.log(cls);
@@ -35,7 +38,7 @@ const AllClasses = () => {
     };
 
     if (user && user.email) {
-      fetch("http://localhost:5000/bookedClasses", {
+      fetch("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/bookedClasses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
