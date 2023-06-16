@@ -84,10 +84,8 @@ const SelectedClasses = () => {
                       delete
                     </button>
                     <Link
-                      to={{
-                        pathname: `/dashboard/payment/${cls?._id}`,
-                        state: { price: cls.price },
-                      }}>
+                      to={`/dashboard/payment/${cls?._id}`} // Pass class ID as URL parameter
+                    >
                       <button className="btn btn-xs w-full bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400">
                         Pay
                       </button>

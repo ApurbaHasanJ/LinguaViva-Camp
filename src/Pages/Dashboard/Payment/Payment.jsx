@@ -2,15 +2,17 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Helmet } from "react-helmet";
 import CheckOutForm from "./CheckOutForm";
 import { Elements } from "@stripe/react-stripe-js";
-
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import useBooked from "../../../Hooks/useBooked";
 
 // TODO: Provide Publishable key
-const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK)
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
+
 const Payment = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const price = queryParams.get("price");
+  const { id } = useParams();
+  const [bookedClasses] = useBooked();
+  const selectedClass = bookedClasses.find(cls => cls._id === id);
+  console.log(selectedClass?.price);
 
   return (
     <>
@@ -24,8 +26,7 @@ const Payment = () => {
       </div>
 
       <Elements stripe={stripePromise}>
-
-      <CheckOutForm price={price}/>
+        <CheckOutForm price={selectedClass?.price} />
       </Elements>
     </>
   );

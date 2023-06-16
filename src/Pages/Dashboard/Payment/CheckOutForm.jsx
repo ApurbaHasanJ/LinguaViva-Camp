@@ -3,21 +3,22 @@ import { useState, useEffect } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = ({ price }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [axiosSecure] = useAxiosSecure()
+  const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
-  const {user}=useAuth();
-  const [clientSecret, setClientSecret] = useState('')
+  const { user } = useAuth();
+  const [clientSecret, setClientSecret] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axiosSecure.post('/create-payment-intent', {price})
-    .then(res => {
-      setClientSecret(res.data.clientSecret)
-    })
-  }, []);
+    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
+      setClientSecret(res.data.clientSecret);
+    });
+  }, [axiosSecure, price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +32,6 @@ const CheckOutForm = ({ price }) => {
     if (card == null) {
       return;
     }
-    console.log("card", card);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -44,25 +44,34 @@ const CheckOutForm = ({ price }) => {
       setCardError("");
       console.log("[PaymentMethod]", paymentMethod);
     }
-    const {paymentIntent, error:confirmError}= await stripe
-  .confirmCardPayment(clientSecret, {
-    payment_method: {
-      card: card,
-      billing_details: {
-        name: user?.displayName || 'Anonymous',
-        email: user?.email || 'Unknown'
-      },
-    },
-  })
-  if(confirmError){
-    console.log(confirmError);
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      text: confirmError,
-    });
-  }
-  console.log(paymentIntent);
+
+    const {  error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName || "Anonymous",
+            email: user?.email || "Unknown",
+          },
+        },
+      });
+
+    if (confirmError) {
+      console.log(confirmError);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: confirmError?.message,
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Payment Successful",
+        text: "Your payment has been processed successfully.",
+      }).then(() => {
+        navigate("/dashboard/selected-classes");
+      });
+    }
   };
 
   return (
@@ -87,8 +96,7 @@ const CheckOutForm = ({ price }) => {
         <button
           className="btn mt-6 btn-sm bg-sky-300 hover:bg-sky-400"
           type="submit"
-          disabled={!stripe || !clientSecret}
-        >
+          disabled={!stripe || !clientSecret}>
           Pay
         </button>
       </form>
