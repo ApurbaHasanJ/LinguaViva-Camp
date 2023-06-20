@@ -1,6 +1,16 @@
 # Live Site : [LinguaViva Camp](https://linguaviva-camp.web.app/)
 ---
 
+## You can login as-
+Admin : -
+Email : naziatasnim@gmail.com
+Password : Aa@000
+-----------
+Instructor : -
+Email : believercasa@gmail.com
+Password : Aa@000
+-----------------------------------------------
+
 The Language Learning Web Application is a platform that facilitates language learning through various features and functionalities. It allows admins to manage users and classes, instructors to update and post classes, and normal users (students) to bookmark classes for enrollment and make payments.
 
 ## Features
