@@ -45,8 +45,9 @@ const CheckOutForm = ({ price }) => {
       console.log("[PaymentMethod]", paymentMethod);
     }
 
-    const {  error: confirmError } =
-      await stripe.confirmCardPayment(clientSecret, {
+    const { error: confirmError } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
         payment_method: {
           card: card,
           billing_details: {
@@ -54,7 +55,8 @@ const CheckOutForm = ({ price }) => {
             email: user?.email || "Unknown",
           },
         },
-      });
+      }
+    );
 
     if (confirmError) {
       console.log(confirmError);
@@ -65,9 +67,12 @@ const CheckOutForm = ({ price }) => {
       });
     } else {
       Swal.fire({
+        position: "top-end",
         icon: "success",
         title: "Payment Successful",
         text: "Your payment has been processed successfully.",
+        showConfirmButton: false,
+        timer: 1500,
       }).then(() => {
         navigate("/dashboard/selected-classes");
       });

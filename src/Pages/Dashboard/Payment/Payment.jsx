@@ -11,7 +11,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 const Payment = () => {
   const { id } = useParams();
   const [bookedClasses] = useBooked();
-  const selectedClass = bookedClasses.find(cls => cls._id === id);
+  const selectedClass = bookedClasses.find((cls) => cls._id === id);
   console.log(selectedClass?.price);
 
   return (
@@ -24,7 +24,6 @@ const Payment = () => {
           Payment Classes
         </h2>
       </div>
-
       <Elements stripe={stripePromise}>
         <CheckOutForm price={selectedClass?.price} />
       </Elements>
