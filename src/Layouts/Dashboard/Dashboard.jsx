@@ -79,18 +79,32 @@ const Dashboard = () => {
                   </div>
                 </label>
                 <ul className="menu menu-compact z-50 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                  <li>
-                    <NavLink to="/profile" className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/settings">Settings</NavLink>
-                  </li>
-                  <li>
-                    <button onClick={handleLogout}>Logout</button>
-                  </li>
+                <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                  to="/profile">
+                  Profile
+                  <span className="badge">New</span>
+                </NavLink>
+              </li>
+              {/* <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                  to="/settings">
+                  Settings
+                </NavLink>
+              </li> */}
+              <li>
+                <button
+                  className="hover:text-sky-500 font-medium"
+                  onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
                 </ul>
               </div>
             ) : (

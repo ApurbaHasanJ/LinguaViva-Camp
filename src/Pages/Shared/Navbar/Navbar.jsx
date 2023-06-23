@@ -150,7 +150,7 @@ const Navbar = ({ bgClassName, textClassName }) => {
                   <span className="badge">New</span>
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? "active" : "default"
@@ -158,7 +158,7 @@ const Navbar = ({ bgClassName, textClassName }) => {
                   to="/settings">
                   Settings
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <button
                   className="hover:text-sky-500 font-medium"
