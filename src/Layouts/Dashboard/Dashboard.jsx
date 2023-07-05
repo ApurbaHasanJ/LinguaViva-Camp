@@ -136,7 +136,7 @@ const Dashboard = () => {
           <ul className="menu gap-1 p-3 w-80 h-full bg-sky-50 text-base-content">
             {isAdmin ? (
               <>
-                <li>
+                {/* <li>
                   <NavLink
                     className={({ isActive }) =>
                       isActive ? "active" : "default"
@@ -144,7 +144,7 @@ const Dashboard = () => {
                     to="/admin-home">
                     <AiFillHome /> <p>Admin Home</p>
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     className={({ isActive }) =>
@@ -170,7 +170,7 @@ const Dashboard = () => {
               <>
                 {isInstructor ? (
                   <>
-                    <li>
+                    {/* <li>
                       <NavLink
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
@@ -178,7 +178,7 @@ const Dashboard = () => {
                         to="instructor-home">
                         <AiFillHome /> <p>Instructor Home</p>
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink
                         className={({ isActive }) =>
@@ -203,7 +203,7 @@ const Dashboard = () => {
                 ) : (
                   <>
                     {" "}
-                    <li>
+                    {/* <li>
                       <NavLink
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
@@ -211,7 +211,7 @@ const Dashboard = () => {
                         to="/student-home">
                         <AiFillHome /> <p>Student Home</p>
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li className="flex">
                       <NavLink
                         className={({ isActive }) =>

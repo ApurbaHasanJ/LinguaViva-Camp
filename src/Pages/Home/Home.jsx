@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import Banners from "./Sections/Banners/Banners";
 import PopularClasses from "./Sections/PopularClasses/PopularClasses";
-import PopularInstructors from "./Sections/PopularInstructors/PopularInstructors";
+// import PopularInstructors from "./Sections/PopularInstructors/PopularInstructors";
 import SummerLife from "./Sections/SummerLife/SummerLife";
 import AmazingExperiences from "./Sections/AmazingExperience/AmazingExperiences";
 import Questions from "./Sections/Questions/Questions";
@@ -17,7 +17,7 @@ const Home = () => {
       <SummerLife />
       <Programs />
       <PopularClasses />
-      <PopularInstructors />
+      {/* <PopularInstructors /> */}
       <AmazingExperiences />
       <Questions />
     </div>

@@ -19,6 +19,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import Profile from "../Pages/Profile/Profile";
+import DashHome from "../Pages/Dashboard/DashHome";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <PrivateRoutes><Profile /></PrivateRoutes>,
+        element: (
+          <PrivateRoutes>
+            <Profile />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",
@@ -61,6 +66,10 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/dashboard/",
+        element: <DashHome />,
+      },
       // admin routes
       {
         path: "/dashboard/users",

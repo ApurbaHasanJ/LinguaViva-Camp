@@ -79,33 +79,39 @@ const CheckOutForm = ({ price }) => {
     }
   };
 
+  const cardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#424770",
+        "::placeholder": {
+          color: "#aab7c4",
+        },
+        padding: "10px 12px",
+        border: "1px solid #d4d4d4",
+        borderRadius: "4px",
+      },
+      invalid: {
+        color: "#9e2146",
+        borderColor: "#9e2146",
+      },
+    },
+  };
+
   return (
-    <div className="my-container">
-      <form onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
-                },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
+    <div className="my-container mb-10">
+      <form className="border p-5 rounded-md" onSubmit={handleSubmit}>
+        <CardElement options={cardElementOptions} />
+        {cardError && <p className="text-red-500">{cardError}</p>}
         <button
           className="btn mt-6 btn-sm bg-sky-300 hover:bg-sky-400"
           type="submit"
-          disabled={!stripe || !clientSecret}>
+          disabled={!stripe || !clientSecret}
+        >
           Pay
         </button>
       </form>
-      {cardError && <p className="text-red-500">{cardError}</p>}
+      
     </div>
   );
 };

@@ -56,44 +56,51 @@ const SelectedClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {bookedClasses.map((cls, index) => (
-              <tr key={cls._id} className="border-b border-gray-100">
-                <td>{index + 1}</td>
-                <td>
-                  <div className="avatar w-28">
-                    <img src={cls?.image} alt="Thumbnail" />
-                  </div>
+            {bookedClasses.length > 0 ? (
+              bookedClasses.map((cls, index) => (
+                <tr key={cls._id} className="border-b border-gray-100">
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="avatar w-28">
+                      <img src={cls?.image} alt="Thumbnail" />
+                    </div>
 
-                  <br />
-                  <div className="font-medium ">{cls?.title}</div>
-                </td>
-                <td className="text-xs opacity-70">
-                  {cls?.seats} seats <br /> available
-                </td>
-                <td className="capitalize font-medium text-xs">
-                  ${cls?.price}
-                </td>
+                    <br />
+                    <div className="font-medium ">{cls?.title}</div>
+                  </td>
+                  <td className="text-xs opacity-70">
+                    {cls?.seats} seats <br /> available
+                  </td>
+                  <td className="capitalize font-medium text-xs">
+                    ${cls?.price}
+                  </td>
 
-                <td>
-                  <div className="grid gap-2">
-                    <button
-                      className="btn btn-xs bg-white border border-red-400 text-red-400 hover:text-white hover:bg-red-400"
-                      onClick={() => {
-                        handleDeleteBookedCls(cls?._id);
-                      }}>
-                      delete
-                    </button>
-                    <Link
-                      to={`/dashboard/payment/${cls?._id}`} // Pass class ID as URL parameter
-                    >
-                      <button className="btn btn-xs w-full bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400">
-                        Pay
+                  <td>
+                    <div className="grid gap-2">
+                      <button
+                        className="btn btn-xs bg-white border border-red-400 text-red-400 hover:text-white hover:bg-red-400"
+                        onClick={() => {
+                          handleDeleteBookedCls(cls?._id);
+                        }}>
+                        delete
                       </button>
-                    </Link>
-                  </div>
+                      <Link to={`/dashboard/payment/${cls?._id}`}>
+                        {/* Pass class ID as URL parameter */}
+                        <button className="btn btn-xs w-full bg-white border border-green-400 text-green-400 hover:text-white hover:bg-green-400">
+                          Pay
+                        </button>
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className="border-b text-center border-gray-100">
+                <td colSpan="5">
+                  Please select at least one class to view here.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

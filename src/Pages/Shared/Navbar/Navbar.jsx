@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 import { AiFillHome } from "react-icons/ai";
 import { SiGoogleclassroom } from "react-icons/si";
 import { BsFillInfoSquareFill } from "react-icons/bs";
-import { MdClass } from "react-icons/md";
 import useBooked from "../../../Hooks/useBooked";
 
 const Navbar = ({ bgClassName, textClassName }) => {
@@ -95,7 +94,9 @@ const Navbar = ({ bgClassName, textClassName }) => {
                 <p>Dashboard</p>
               </NavLink>
             </li>
-            <li className="flex">
+
+            {/* booked cls */}
+            {/* <li className="flex">
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
                 to="/dashboard/selected-classes">
@@ -105,7 +106,7 @@ const Navbar = ({ bgClassName, textClassName }) => {
                   {bookedClasses?.length || 0}
                 </div>
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "default")}
