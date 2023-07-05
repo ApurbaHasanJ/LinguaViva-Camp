@@ -46,14 +46,14 @@ const Programs = () => {
                 <p className="text-slate-950 font-medium text-base mt-3">
                   {program?.description}
                 </p>
-                <p className="text-gray-600   mt-3">
+                <div className="text-gray-600   mt-3">
                   <span className="font-semibold text-base">Destination: </span>
                   {program?.destinations}
                   <div className="mt-2 sm:flex grid gap-4 text-sm font-semibold justify-items-center  sm:justify-end text-black">
                     <button className="border border-yellow-400 rounded-full hover:shadow-2xl w-60 py-2">Order Free Boucher</button>
                     <button className="bg-yellow-400 rounded-full hover:shadow-2xl w-44 py-2">Learn More</button>
                   </div>
-                </p>
+                </div>
               </div>
             </div>
           </div>

@@ -14,6 +14,7 @@ const Payment = () => {
   const selectedClass = bookedClasses.find((cls) => cls._id === id);
   console.log(selectedClass?.price);
 
+  // console.log(bookedClasses);
   return (
     <>
       <Helmet>
@@ -25,7 +26,7 @@ const Payment = () => {
         </h2>
       </div>
       <Elements stripe={stripePromise}>
-        <CheckOutForm price={selectedClass?.price} />
+        <CheckOutForm cls={selectedClass} price={selectedClass?.price} />
       </Elements>
     </>
   );
