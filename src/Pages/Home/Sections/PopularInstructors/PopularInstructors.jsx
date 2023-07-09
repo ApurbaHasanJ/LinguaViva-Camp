@@ -25,6 +25,7 @@
 //       <div className="grid md:grid-cols-3 sm:grid-cols-2 mb-10 gap-5 my-container">
 //         {popularInstructors.map((instructor) => (
 //           <div
+//             data-aos="zoom-in-up"
 //             key={instructor._id}
 //             className="card border-t rounded-lg bg-base-100 shadow-xl flex flex-col">
 //             <div className="overflow-hidden rounded-t-lg">

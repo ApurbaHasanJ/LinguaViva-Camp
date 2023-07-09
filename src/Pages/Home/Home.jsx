@@ -6,8 +6,13 @@ import SummerLife from "./Sections/SummerLife/SummerLife";
 import AmazingExperiences from "./Sections/AmazingExperience/AmazingExperiences";
 import Questions from "./Sections/Questions/Questions";
 import Programs from "./Sections/Programs/Programs";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
   return (
     <div>
       <Helmet>

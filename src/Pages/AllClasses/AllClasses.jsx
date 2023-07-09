@@ -11,7 +11,7 @@ const AllClasses = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [allClasses, refetch,isLoading] = useAllClasses();
+  const [allClasses, refetch, isLoading] = useAllClasses();
   console.log(allClasses);
 
   // const { data: classes = [] } = useQuery(["classes/approved"], async () => {
@@ -19,7 +19,6 @@ const AllClasses = () => {
   //   console.log(classes);
   //   return res.json();
   // });
-
 
   if (isLoading) {
     return <Spinner />;
@@ -38,13 +37,16 @@ const AllClasses = () => {
     };
 
     if (user && user.email) {
-      fetch("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/bookedClasses", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookedCls),
-      })
+      fetch(
+        "https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/bookedClasses",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookedCls),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
@@ -73,7 +75,6 @@ const AllClasses = () => {
         }
       });
     }
-    
   };
 
   return (
@@ -89,9 +90,9 @@ const AllClasses = () => {
       <div className="grid md:grid-cols-3 sm:grid-cols-2 mb-10 gap-5 my-container">
         {allClasses.map((cls) => (
           <div
+            data-aos="zoom-in-up"
             key={cls._id}
-            className="card border-t rounded-lg bg-base-100 shadow-xl flex flex-col"
-          >
+            className="card border-t rounded-lg bg-base-100 shadow-xl flex flex-col">
             <div className="overflow-hidden rounded-t-lg">
               <img
                 className=" object-cover md:h-48 w-full"
@@ -102,8 +103,7 @@ const AllClasses = () => {
             <div
               className={`card-body rounded-b-lg ${
                 cls.availableSeats === 0 && "bg-red-500"
-              } flex flex-col justify-between`}
-            >
+              } flex flex-col justify-between`}>
               <div>
                 <h2 className="card-title">{cls.clsTitle}</h2>
               </div>
@@ -122,15 +122,13 @@ const AllClasses = () => {
                 {cls.availableSeats === 0 ? (
                   <button
                     disabled="disabled"
-                    className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white"
-                  >
+                    className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white">
                     Add
                   </button>
                 ) : (
                   <button
                     onClick={() => handleBookedClasses(cls)}
-                    className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white"
-                  >
+                    className="btn btn-sm btn-outline border border-green-400 bg-white text-green-400 hover:bg-green-400 hover:border-none hover:text-white">
                     Add
                   </button>
                 )}

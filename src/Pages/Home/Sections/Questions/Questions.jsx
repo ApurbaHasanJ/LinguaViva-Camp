@@ -6,7 +6,7 @@ const Questions = () => {
           Frequently asked questions
         </h3>
         <div className="join border-none  rounded-none join-vertical ">
-          <div className="collapse m-0 border-y mt-7 rounded-none border-gray-200 collapse-arrow join-item ">
+          <div data-aos="fade-up" className="collapse m-0 border-y mt-7 rounded-none border-gray-200 collapse-arrow join-item ">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-base font-bold">
               # What&apos;s a typical day like at the summer camps?
@@ -64,7 +64,7 @@ const Questions = () => {
               </ul>
             </div>
           </div>
-          <div className="collapse collapse-arrow join-item border-b mt-10 rounded-none border-gray-200">
+          <div data-aos="fade-up" className="collapse collapse-arrow join-item border-b mt-10 rounded-none border-gray-200">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-base font-bold">
               # Who will I travel with during my summer camp?
@@ -90,7 +90,7 @@ const Questions = () => {
               </p>
             </div>
           </div>
-          <div className="collapse collapse-arrow join-item border-y mt-10 rounded-none border-gray-200">
+          <div data-aos="fade-up" className="collapse collapse-arrow join-item border-y mt-10 rounded-none border-gray-200">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-base font-bold">
               # Which languages can I learn during a summer camp?

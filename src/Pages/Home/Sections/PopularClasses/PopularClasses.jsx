@@ -90,14 +90,15 @@ const PopularClasses = () => {
 
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex  justify-center">
         <h2 className="text-center my-3 font-semibold text-2xl bg-sky-200 p-3 px-6 rounded-tr-full rounded-bl-full inline-block">
           Popular Classes
         </h2>
       </div>
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 mb-10 gap-5 my-container">
+      <div className="grid my-container md:grid-cols-3 sm:grid-cols-2 mb-10 gap-5 ">
         {popularClasses.map((cls) => (
           <div
+            data-aos="zoom-in-up"
             key={cls._id}
             className="card border-t rounded-lg bg-base-100 shadow-xl flex flex-col">
             <div className="overflow-hidden rounded-t-lg">

@@ -8,7 +8,7 @@ const AmazingExperiences = () => {
         <p>Amazing experiences</p>
       </h2>
       <div className="my-container gap-6 grid md:grid-cols-4 sm:grid-cols-2">
-        <div className="rounded relative">
+        <div data-aos="zoom-out" className="rounded relative">
           <img
             className="rounded"
             src="https://i.ibb.co/LQp9wjX/adventure.jpg"
@@ -21,7 +21,7 @@ const AmazingExperiences = () => {
           </div>
         </div>
 
-        <div className="rounded relative">
+        <div data-aos="zoom-out" className="rounded relative">
           <img
             className="rounded"
             src="https://i.ibb.co/GcsDnV6/teenager.jpg"
@@ -33,7 +33,7 @@ const AmazingExperiences = () => {
             <p>Courses</p>
           </div>
         </div>
-        <div className="rounded relative">
+        <div data-aos="zoom-out" className="rounded relative">
           <img
             className="rounded"
             src="https://i.ibb.co/nRW4J6M/beautiful.jpg"
@@ -45,7 +45,7 @@ const AmazingExperiences = () => {
             <p>Schools</p>
           </div>
         </div>
-        <div className="rounded relative">
+        <div data-aos="zoom-out" className="rounded relative">
           <img
             className="rounded"
             src="https://i.ibb.co/mbP3Xp3/friends.jpg"

@@ -19,7 +19,7 @@ import useInstructor from "../../Hooks/useInstructor";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [bookedClasses] = useBooked();
-  
+
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   // const isStudent = true;
@@ -50,7 +50,9 @@ const Dashboard = () => {
         <title>Dashboard | LVC</title>
       </Helmet>
       <div>
-        <div className="grid navbar bg-sky-50 h-8 border-b grid-cols-3">
+        <div
+          data-aos="fade-left"
+          className="grid navbar bg-sky-50 h-8 border-b grid-cols-3">
           <div>
             <h2 className={"font-extrabold text-2xl ml-6 text-black"}>
               Dashboard
@@ -79,17 +81,17 @@ const Dashboard = () => {
                   </div>
                 </label>
                 <ul className="menu menu-compact z-50 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "active" : "default"
-                  }
-                  to="/profile">
-                  Profile
-                  <span className="badge">New</span>
-                </NavLink>
-              </li>
-              {/* <li>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "active" : "default"
+                      }
+                      to="/profile">
+                      Profile
+                      <span className="badge">New</span>
+                    </NavLink>
+                  </li>
+                  {/* <li>
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? "active" : "default"
@@ -98,13 +100,13 @@ const Dashboard = () => {
                   Settings
                 </NavLink>
               </li> */}
-              <li>
-                <button
-                  className="hover:text-sky-500 font-medium"
-                  onClick={handleLogout}>
-                  Logout
-                </button>
-              </li>
+                  <li>
+                    <button
+                      className="hover:text-sky-500 font-medium"
+                      onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
                 </ul>
               </div>
             ) : (
@@ -119,7 +121,9 @@ const Dashboard = () => {
       </div>
       <div className="drawer lg:drawer-open ">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div
+          data-aos="fade-right"
+          className="drawer-content flex flex-col items-center justify-center">
           <label
             htmlFor="my-drawer-2"
             className=" mr-auto bg-sky-50 py-2 px-7 drawer-button lg:hidden">
@@ -131,7 +135,7 @@ const Dashboard = () => {
           </div>
           <Footer />
         </div>
-        <div className="drawer-side border-r bg-sky-50">
+        <div data-aos="fade-right" className="drawer-side border-r bg-sky-50">
           <label htmlFor="my-drawer-2" className="drawer-overlay "></label>
           <ul className="menu gap-1 p-3 w-80 h-full bg-sky-50 text-base-content">
             {isAdmin ? (

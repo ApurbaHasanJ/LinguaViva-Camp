@@ -18,13 +18,13 @@ const Programs = () => {
   return (
     <div className=" bg-gray-100 grid mb-16 py-20">
         <div className="flex justify-center">
-        <h2 className="text-center  font-semibold text-2xl bg-sky-200 p-3 px-6 rounded-tr-full rounded-bl-full inline-block">
+        <h2 className="text-center  font-semibold text-2xl bg-sky-200 py-3 px-6 rounded-tr-full rounded-bl-full inline-block">
           Programs
         </h2>
       </div>
       <div className="my-container">
         {programs.map((program) => (
-          <div key={program._id} className="  p-5  ">
+          <div data-aos="fade-up" key={program._id} className="  p-5  ">
             <div className="bg-white shadow-md border-r-[10px] grid border-yellow-400 hover:shadow-xl md:flex items-start w-full py-10 pl-10 pr-16  rounded gap-8">
               <figure className="md:w-1/3">
                 <img src={program?.img} alt="" />

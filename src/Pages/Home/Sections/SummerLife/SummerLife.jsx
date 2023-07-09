@@ -4,7 +4,7 @@ import { GiLeafSwirl } from 'react-icons/gi';
 const SummerLife = () => {
   return (
     <div className="my-container md:relative md:flex gap-10 md:mb-24 mb-10">
-      <div className="md:w-3/6 md:mb-0 mb-6">
+      <div data-aos="fade-right" className="md:w-3/6 md:mb-0 mb-6">
         <h2 className="text-3xl font-bold mb-7">Get ready for the summer of your life</h2>
         <p className="text-lg">
           Go on a summer camp abroad with LVC ⛺️☀️! Our summer camps include
