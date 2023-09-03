@@ -64,7 +64,7 @@ const Banners = () => {
         {banners.map((banner) => (
           <SwiperSlide key={banner._id}>
             <div
-              className="relative bg-center bg-cover lg:h-screen h-96"
+              className="relative bg-center w-full bg-cover lg:h-screen h-96"
               style={{ backgroundImage: `url(${banner.img})` }}
             >
               <div className="absolute inset-0 bg-black opacity-30 duration-700"></div>
@@ -79,7 +79,7 @@ const Banners = () => {
                 <p className="lg:text-2xl text-base text-white">
                   50 destinations in 20 countries
                 </p>
-                <div className="mt-4 flex flex-col lg:flex-row lg:gap-4 gap-2">
+                <div className="mt-4 flex flex-col md:flex-row lg:gap-4 gap-2">
                   <button className="lg:px-6 px-2 py-1 lg:text-base text-xs  hover:shadow-2xl lg:py-3 bg-white hover:bg-slate-100 text-black rounded-full">
                     Explore Destinations
                   </button>

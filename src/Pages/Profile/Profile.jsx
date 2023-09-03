@@ -3,8 +3,8 @@ import { Helmet } from "react-helmet";
 import useAuth from "../../Hooks/useAuth";
 
 const Profile = () => {
-  const data = useAuth()
-  const user = data.user
+  const data = useAuth();
+  const user = data.user;
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     displayName: user?.displayName || "",
@@ -31,7 +31,10 @@ const Profile = () => {
     };
 
     try {
-      const response = await fetch("https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/users/info", requestOptions);
+      const response = await fetch(
+        "https://b7a12-summer-camp-server-side-apurba-hasan-j.vercel.app/users/info",
+        requestOptions
+      );
       if (!response.ok) {
         throw new Error("Error updating user data");
       }
@@ -81,9 +84,9 @@ const Profile = () => {
           Profile
         </h2>
       </div>
-      <div className="my-container">
-        <div className="grid grid-cols-2 mt-10">
-          <div className="w-full">
+      <div className="my-container mb-10">
+        <div className="grid grid-cols-2 mt-3">
+          <div data-aos="fade-right" className="w-full">
             {/* {isEditing ? (
               <div className="flex justify-center">
                 <input
@@ -93,10 +96,10 @@ const Profile = () => {
                 />
               </div>
             ) : ( */}
-              <img className="md:w-2/3" src={user?.photoURL} alt="" />
-             {/* )} */}
+            <img className="md:w-2/3" src={user?.photoURL} alt="" />
+            {/* )} */}
           </div>
-          <div>
+          <div data-aos="fade-up">
             <div>
               <div className="flex justify-between">
                 <h2 className="text-4xl font-bold">About Me</h2>

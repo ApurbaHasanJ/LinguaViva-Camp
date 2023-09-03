@@ -86,8 +86,8 @@ const ManageUsers = () => {
           Manage Users
         </h2>
       </div>
-      <div className="overflow-x-auto border-y border-gray-100  mt-3 mb-16 pb-3">
-        <table className="table">
+      <div className="overflow-x-auto t border-y border-gray-100  mt-3 mb-16 pb-3">
+        <table className="table ">
           <thead>
             <tr>
               <th>#</th>

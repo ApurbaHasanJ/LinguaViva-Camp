@@ -49,10 +49,9 @@ const Dashboard = () => {
       <Helmet>
         <title>Dashboard | LVC</title>
       </Helmet>
-      <div>
-        <div
-          data-aos="fade-left"
-          className="grid navbar bg-sky-50 h-8 border-b grid-cols-3">
+      <div
+          // data-aos="fade-left"
+          className="grid navbar bg-sky-50 h-8 border-b ">
           <div>
             <h2 className={"font-extrabold text-2xl ml-6 text-black"}>
               Dashboard
@@ -80,8 +79,8 @@ const Dashboard = () => {
                     )}
                   </div>
                 </label>
-                <ul className="menu menu-compact z-50 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                  <li>
+                <ul className="menu z-[500] menu-compact  dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                  <li className="">
                     <NavLink
                       className={({ isActive }) =>
                         isActive ? "active" : "default"
@@ -102,7 +101,7 @@ const Dashboard = () => {
               </li> */}
                   <li>
                     <button
-                      className="hover:text-sky-500 font-medium"
+                      className=" hover:text-sky-500 font-medium"
                       onClick={handleLogout}>
                       Logout
                     </button>
@@ -118,7 +117,6 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-      </div>
       <div className="drawer lg:drawer-open ">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div

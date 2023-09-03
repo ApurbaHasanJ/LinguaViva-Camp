@@ -3,7 +3,7 @@ import { GiLeafSwirl } from 'react-icons/gi';
 
 const SummerLife = () => {
   return (
-    <div className="my-container md:relative md:flex gap-10 md:mb-24 mb-10">
+    <div className="my-container md:relative md:flex gap-10 md:mb-24 mb-1">
       <div data-aos="fade-right" className="md:w-3/6 md:mb-0 mb-6">
         <h2 className="text-3xl font-bold mb-7">Get ready for the summer of your life</h2>
         <p className="text-lg">
@@ -23,7 +23,7 @@ const SummerLife = () => {
         <div className='card-body'>
           <h2 className="text-xl font-bold card-title border-b pb-6 gray-900 flex place-items-start gap-3">
             <span className='w-8'><GiLeafSwirl className='text-3xl'/></span>
-            <p> Why go on a summer camp with LVC?</p>
+            <p>Why go on a summer camp with LVC?</p>
           </h2>
           <ul className="mt-6 grid gap-2">
             <li>Over 50 years of experience</li>

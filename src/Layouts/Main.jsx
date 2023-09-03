@@ -24,13 +24,13 @@ const Main = () => {
     };
   }, [location.pathname]);
 
-  const navbarBgClassName = location.pathname === "/" ? (showNavbarBg ? "bg-sky-100" : "bg-none") : "bg-sky-100";
-  const navbarTextClassName = location.pathname === "/" ? (showNavbarBg ? "text-black" : "text-white") : "text-black";
+  const navbarBgClassName = location.pathname === "/" ? (showNavbarBg ? "bg-sky-100 " : "bg-none ") : "bg-sky-100";
+  const navbarTextClassName = location.pathname === "/" ? (showNavbarBg ? "text-black " : "text-white ") : "text-black ";
 
   return (
     <div>
       <Navbar bgClassName={navbarBgClassName} textClassName={navbarTextClassName} />
-      <div className="min-h-[100vh]">
+      <div className="min-h-[100vh] ">
         <Outlet />
       </div>
       <Footer />
