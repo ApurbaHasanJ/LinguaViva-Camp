@@ -52,7 +52,7 @@ const Navbar = ({ bgClassName, textClassName }) => {
     <div
       className={`navbar h-8 border-b fixed top-0 left-0 z-50 transition-opacity duration-300 ${
         isNavbarVisible ? "opacity-100" : "opacity-0"
-      } ${bgClassName} `}>
+      } ${bgClassName} `}>c
       <div className="navbar-start">
         <div className="dropdown">
           <label

@@ -51,7 +51,7 @@ const Dashboard = () => {
       </Helmet>
       <div
           // data-aos="fade-left"
-          className="grid navbar bg-sky-50 h-8 border-b ">
+          className="grid grid-cols-3 navbar bg-sky-50 h-8 border-b ">
           <div>
             <h2 className={"font-extrabold text-2xl ml-6 text-black"}>
               Dashboard
